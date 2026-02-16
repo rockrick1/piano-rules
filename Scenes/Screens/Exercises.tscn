@@ -1,0 +1,496 @@
+[gd_scene format=3 uid="uid://brprxle6mu0u5"]
+
+[ext_resource type="Script" uid="uid://ced3sg2tvgx5x" path="res://Scripts/Screens/ExerciseController.gd" id="1_pdybv"]
+[ext_resource type="PackedScene" path="res://Scenes/InputReader.tscn" id="2_5aagi"]
+[ext_resource type="Texture2D" uid="uid://bdbw66fuf4qs3" path="res://Assets/cleff.png" id="3_2ki3s"]
+[ext_resource type="FontFile" uid="uid://bksggk1e6s5j4" path="res://Assets/Fonts/Rubik-VariableFont_wght.ttf" id="4_hrix4"]
+[ext_resource type="FontFile" path="res://Assets/Fonts/Simple.tres" id="5_mpppm"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/OptionsPanel.tscn" id="6_5as6n"]
+
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("4_hrix4")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[node name="Exercises" type="Control" unique_id=1264331475]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pdybv")
+
+[node name="InputReader" parent="." unique_id=1421441255 instance=ExtResource("2_5aagi")]
+
+[node name="Background" type="ColorRect" parent="." unique_id=1219415357]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.372549, 0.505882, 0.603922, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1150686993]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=1428879813]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 17.56
+theme_override_constants/margin_top = 69
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/MarginContainer" unique_id=1961566270]
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 9.39
+texture = ExtResource("3_2ki3s")
+stretch_mode = 4
+
+[node name="Assist" type="Control" parent="MarginContainer/MarginContainer/TextureRect" unique_id=314411172]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer/TextureRect/Assist" unique_id=1538929284]
+layout_mode = 0
+offset_left = 576.663
+offset_top = 85.6071
+offset_right = 798.663
+offset_bottom = 339.607
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/TextureRect/Assist" unique_id=1301924715]
+layout_mode = 0
+offset_left = 559.868
+offset_top = 133.0
+offset_right = 620.868
+offset_bottom = 152.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "C "
+
+[node name="Label7" type="Label" parent="MarginContainer/MarginContainer/TextureRect/Assist" unique_id=1803993403]
+layout_mode = 0
+offset_left = 558.924
+offset_top = 273.0
+offset_right = 619.924
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "C "
+
+[node name="Label8" type="Label" parent="MarginContainer/MarginContainer/TextureRect/Assist" unique_id=1779496572]
+layout_mode = 0
+offset_left = 558.924
+offset_top = 312.0
+offset_right = 619.924
+offset_bottom = 331.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "F"
+
+[node name="Label4" type="Label" parent="MarginContainer/MarginContainer/TextureRect/Assist" unique_id=1765290569]
+layout_mode = 0
+offset_left = 559.868
+offset_top = 95.0
+offset_right = 620.868
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "G"
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/TextureRect/Assist" unique_id=522428298]
+layout_mode = 0
+offset_left = 583.228
+offset_top = 162.7
+offset_right = 644.228
+offset_bottom = 181.7
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "G"
+
+[node name="Label5" type="Label" parent="MarginContainer/MarginContainer/TextureRect/Assist" unique_id=741562001]
+layout_mode = 0
+offset_left = 543.284
+offset_top = 62.7002
+offset_right = 604.284
+offset_bottom = 81.7002
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "C"
+
+[node name="Label10" type="Label" parent="MarginContainer/MarginContainer/TextureRect/Assist" unique_id=1646381467]
+layout_mode = 0
+offset_left = 543.284
+offset_top = 202.7
+offset_right = 604.284
+offset_bottom = 221.7
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "C"
+
+[node name="Label6" type="Label" parent="MarginContainer/MarginContainer/TextureRect/Assist" unique_id=805201885]
+layout_mode = 0
+offset_left = 582.561
+offset_top = 242.744
+offset_right = 643.561
+offset_bottom = 261.744
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "F"
+
+[node name="HardAssist" type="Control" parent="MarginContainer/MarginContainer/TextureRect" unique_id=1232669431]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=1964987138]
+layout_mode = 0
+anchor_left = 0.0280609
+anchor_right = 0.0280609
+offset_left = 576.663
+offset_top = 85.6071
+offset_right = 798.663
+offset_bottom = 339.607
+
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=1159970735]
+layout_mode = 0
+offset_left = 559.868
+offset_top = 133.37
+offset_right = 620.868
+offset_bottom = 152.37
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "C "
+
+[node name="Label7" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=184647501]
+layout_mode = 0
+offset_left = 558.924
+offset_top = 273.0
+offset_right = 619.924
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "C "
+
+[node name="Label8" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=1203343186]
+layout_mode = 0
+offset_left = 558.924
+offset_top = 312.0
+offset_right = 619.924
+offset_bottom = 331.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "F"
+
+[node name="Label4" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=599957210]
+layout_mode = 0
+offset_left = 559.868
+offset_top = 95.0
+offset_right = 620.868
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "G"
+
+[node name="Label18" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=851970849]
+layout_mode = 0
+offset_left = 559.868
+offset_top = 113.0
+offset_right = 620.868
+offset_bottom = 132.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "E"
+
+[node name="Label19" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=1768568902]
+layout_mode = 0
+offset_left = 559.868
+offset_top = 153.0
+offset_right = 620.868
+offset_bottom = 172.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "A"
+
+[node name="Label20" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=632346173]
+layout_mode = 0
+offset_left = 559.868
+offset_top = 173.0
+offset_right = 620.868
+offset_bottom = 192.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "F"
+
+[node name="Label21" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=830399165]
+layout_mode = 0
+offset_left = 559.868
+offset_top = 193.0
+offset_right = 620.868
+offset_bottom = 212.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "D"
+
+[node name="Label22" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=1475789430]
+layout_mode = 0
+offset_left = 559.868
+offset_top = 213.0
+offset_right = 620.868
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "B"
+
+[node name="Label23" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=1092793857]
+layout_mode = 0
+offset_left = 559.868
+offset_top = 233.0
+offset_right = 620.868
+offset_bottom = 252.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "G"
+
+[node name="Label24" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=146205841]
+layout_mode = 0
+offset_left = 559.868
+offset_top = 253.0
+offset_right = 620.868
+offset_bottom = 272.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "E"
+
+[node name="Label25" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=2055514507]
+layout_mode = 0
+offset_left = 559.238
+offset_top = 293.0
+offset_right = 620.238
+offset_bottom = 312.0
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "A"
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=559175985]
+layout_mode = 0
+offset_left = 583.228
+offset_top = 162.7
+offset_right = 644.228
+offset_bottom = 181.7
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "G"
+
+[node name="Label3" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=1616662838]
+layout_mode = 0
+offset_left = 583.228
+offset_top = 142.7
+offset_right = 644.228
+offset_bottom = 161.7
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "B"
+
+[node name="Label11" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=1955478935]
+layout_mode = 0
+offset_left = 583.228
+offset_top = 123.7
+offset_right = 644.228
+offset_bottom = 142.7
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "D"
+
+[node name="Label12" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=635845173]
+layout_mode = 0
+offset_left = 582.598
+offset_top = 103.7
+offset_right = 643.598
+offset_bottom = 122.7
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "F"
+
+[node name="Label13" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=995367351]
+layout_mode = 0
+offset_left = 583.228
+offset_top = 183.7
+offset_right = 644.228
+offset_bottom = 202.7
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "E"
+
+[node name="Label14" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=1086355148]
+layout_mode = 0
+offset_left = 583.228
+offset_top = 222.7
+offset_right = 644.228
+offset_bottom = 241.7
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "A"
+
+[node name="Label15" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=991277003]
+layout_mode = 0
+offset_left = 583.228
+offset_top = 262.07
+offset_right = 644.228
+offset_bottom = 281.07
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "D"
+
+[node name="Label16" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=340233934]
+layout_mode = 0
+offset_left = 583.228
+offset_top = 282.7
+offset_right = 644.228
+offset_bottom = 301.7
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "B"
+
+[node name="Label17" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=742663040]
+layout_mode = 0
+offset_left = 583.228
+offset_top = 302.7
+offset_right = 644.228
+offset_bottom = 321.7
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "G"
+
+[node name="Label5" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=2043538182]
+layout_mode = 0
+offset_left = 543.284
+offset_top = 62.7002
+offset_right = 604.284
+offset_bottom = 81.7002
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "C"
+
+[node name="Label10" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=1195804569]
+layout_mode = 0
+offset_left = 543.284
+offset_top = 202.7
+offset_right = 604.284
+offset_bottom = 221.7
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "C"
+
+[node name="Label9" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=577824686]
+layout_mode = 0
+offset_left = 543.284
+offset_top = 322.7
+offset_right = 604.284
+offset_bottom = 341.7
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "E"
+
+[node name="Label6" type="Label" parent="MarginContainer/MarginContainer/TextureRect/HardAssist" unique_id=932533174]
+layout_mode = 0
+offset_left = 582.561
+offset_top = 242.744
+offset_right = 643.561
+offset_bottom = 261.744
+theme_override_colors/font_color = Color(1, 0.117647, 0, 1)
+theme_override_fonts/font = SubResource("1")
+text = "F"
+
+[node name="Complements" type="Control" parent="MarginContainer/MarginContainer/TextureRect" unique_id=1032512382]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TopLine" type="Line2D" parent="MarginContainer/MarginContainer/TextureRect/Complements" unique_id=947121973]
+points = PackedVector2Array(0, 0, 100, 0)
+width = 2.0
+
+[node name="BotLine" type="Line2D" parent="MarginContainer/MarginContainer/TextureRect/Complements" unique_id=313579773]
+points = PackedVector2Array(0, 0, 100, 0)
+width = 2.0
+default_color = Color(1, 0.219608, 0.309804, 1)
+
+[node name="Anchor77" type="Node2D" parent="MarginContainer/MarginContainer/TextureRect" unique_id=1390954834]
+position = Vector2(503.703, 112.506)
+
+[node name="Anchor60" type="Node2D" parent="MarginContainer/MarginContainer/TextureRect" unique_id=510931957]
+position = Vector2(503.703, 212.493)
+
+[node name="Anchor43" type="Node2D" parent="MarginContainer/MarginContainer/TextureRect" unique_id=1319642447]
+position = Vector2(503.703, 312.501)
+
+[node name="Notes" type="Node2D" parent="MarginContainer/MarginContainer/TextureRect" unique_id=2007476199]
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer" unique_id=188200827]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Combos" type="HBoxContainer" parent="MarginContainer/Buttons" unique_id=1733290134]
+layout_mode = 2
+alignment = 1
+
+[node name="Combo" type="Label" parent="MarginContainer/Buttons/Combos" unique_id=1237044353]
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.98
+theme_override_fonts/font = ExtResource("5_mpppm")
+text = "Combo: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaxCombo" type="Label" parent="MarginContainer/Buttons/Combos" unique_id=2010600666]
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.98
+theme_override_fonts/font = ExtResource("5_mpppm")
+text = "Combo: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextStep" type="Button" parent="MarginContainer/Buttons" unique_id=418728783]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+theme_override_fonts/font = ExtResource("5_mpppm")
+text = "Next exercise step"
+
+[node name="Configs" type="Button" parent="MarginContainer/Buttons" unique_id=176437622]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.35
+theme_override_fonts/font = ExtResource("5_mpppm")
+text = "Options"
+
+[node name="OptionsPanel" parent="MarginContainer/Buttons/Configs" unique_id=2029911146 instance=ExtResource("6_5as6n")]
+
+[connection signal="pressed" from="MarginContainer/Buttons/NextStep" to="." method="_on_NextStep_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/Configs" to="." method="_on_Configs_pressed"]

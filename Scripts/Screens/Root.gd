@@ -1,8 +1,6 @@
 extends Node
 
-var currently_pressed : Dictionary = {}
-var just_pressed : Dictionary = {}
-var just_released : Dictionary = {}
+@onready var note_mapping = NoteMapping.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,6 +10,7 @@ func _ready():
 
 	for current_midi_input in OS.get_connected_midi_inputs():
 		print(current_midi_input)
+		$"Control/VBoxContainer/MidiInputsList".add_item(current_midi_input, null, false)
 
 
 # via <https://github.com/godotengine/godot/blob/master/core/os/input_event.h>
@@ -40,6 +39,7 @@ const OCTAVE_KEY_INDEX = ["WhiteKey1", "BlackKey1", "WhiteKey2", "BlackKey2", "W
 
 
 func _unhandled_input(event : InputEvent):
+
 	if (event is InputEventMIDI):
 
 		var event_dump : String = ""
@@ -58,18 +58,18 @@ func _unhandled_input(event : InputEvent):
 		event_dump += "\n"
 
 		# Currently played note is the pitch in the message
-		played_note = NoteMapping.notes[props["pitch"]]
+		played_note = note_mapping.get_map()[props["pitch"]]
 
 		# Note: If the instrument isn't keyboard related it will possibly mess up the display.
 		var key_index = event.pitch % 12
 
 		match event.message:
 			MIDI_MESSAGE_NOTE_ON:
-				currently_pressed[props.pitch] = props
-				just_pressed[props.pitch] = props
-#				print(event_dump)
+				$"Control/VBoxContainer/Container/VBoxContainer/RichTextLabel".add_text(event_dump)
 				print(played_note)
+				var current_key_node : CSGPrimitive3D = get_node("3DRoot/Octave/" + OCTAVE_KEY_INDEX[key_index])
+				current_key_node.translate(Vector3(0, -0.125, 0))
 
 			MIDI_MESSAGE_NOTE_OFF:
-				currently_pressed.erase(props.pitch)
-				just_released[props.pitch] = props
+				var current_key_node : CSGPrimitive3D = get_node("3DRoot/Octave/" + OCTAVE_KEY_INDEX[key_index])
+				current_key_node.translate(Vector3(0, +0.125, 0))

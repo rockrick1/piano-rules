@@ -1,0 +1,103 @@
+[gd_scene format=2]
+
+[ext_resource type="Script" uid="uid://e1vkwxw1f8b3" path="res://Scripts/UI/NoteRange.gd" id="1"]
+[ext_resource type="FontFile" path="res://Assets/Fonts/Simple.tres" id="2"]
+
+[node name="Control" type="AcceptDialog"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 201.434
+offset_top = -231.979
+offset_right = 455.434
+offset_bottom = -88.9789
+window_title = ""
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -36.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="VBoxContainer" parent="Buttons"]
+offset_right = 95.0
+offset_bottom = 99.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Up" type="Button" parent="Buttons/Start"]
+offset_top = 11.0
+offset_right = 95.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource( 2 )
+text = "^"
+
+[node name="Label" type="Label" parent="Buttons/Start"]
+offset_top = 40.0
+offset_right = 95.0
+offset_bottom = 59.0
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource( 2 )
+text = "35"
+align = 1
+
+[node name="Down" type="Button" parent="Buttons/Start"]
+offset_top = 63.0
+offset_right = 95.0
+offset_bottom = 88.0
+theme_override_fonts/font = ExtResource( 2 )
+text = "v"
+
+[node name="MarginContainer" type="MarginContainer" parent="Buttons"]
+offset_left = 99.0
+offset_right = 139.0
+offset_bottom = 99.0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_left = 20
+
+[node name="End" type="VBoxContainer" parent="Buttons"]
+offset_left = 143.0
+offset_right = 238.0
+offset_bottom = 99.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Up" type="Button" parent="Buttons/End"]
+offset_top = 11.0
+offset_right = 95.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource( 2 )
+text = "^"
+
+[node name="Label" type="Label" parent="Buttons/End"]
+offset_top = 40.0
+offset_right = 95.0
+offset_bottom = 59.0
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource( 2 )
+text = "35"
+align = 1
+
+[node name="Down" type="Button" parent="Buttons/End"]
+offset_top = 63.0
+offset_right = 95.0
+offset_bottom = 88.0
+theme_override_fonts/font = ExtResource( 2 )
+text = "v"
+
+[connection signal="confirmed" from="." to="." method="_on_Control_confirmed"]
+[connection signal="pressed" from="Buttons/Start/Up" to="." method="_on_Start_Up_pressed"]
+[connection signal="pressed" from="Buttons/Start/Down" to="." method="_on_Start_Down_pressed"]
+[connection signal="pressed" from="Buttons/End/Up" to="." method="_on_End_Up_pressed"]
+[connection signal="pressed" from="Buttons/End/Down" to="." method="_on_End_Down_pressed"]

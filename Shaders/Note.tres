@@ -4,8 +4,8 @@
 code = "shader_type canvas_item;
 render_mode unshaded;
 
-uniform vec4 u_color_key : hint_color;
-uniform vec4 u_replacement_color : hint_color;
+uniform vec4 u_color_key : source_color;
+uniform vec4 u_replacement_color : source_color;
 uniform float strength : float;
 
 void fragment() {
@@ -14,8 +14,8 @@ void fragment() {
     float d = max(max(d4.r, d4.g), d4.b);
     if(d < 0.01 && col.a > 0.0) {
         col.r = u_replacement_color.r * strength;
-		col.g = u_replacement_color.g * strength;
-		col.b = u_replacement_color.b * strength;
+        col.g = u_replacement_color.g * strength;
+        col.b = u_replacement_color.b * strength;
     }
     COLOR = col;
 }"
