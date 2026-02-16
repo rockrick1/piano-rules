@@ -1,31 +1,42 @@
-[gd_scene format=2]
+[gd_scene format=3 uid="uid://d2g6lvci0wvig"]
 
 [ext_resource type="Script" uid="uid://bb35qd1o6v85w" path="res://Scripts/UI/OptionsPanel.gd" id="1"]
 [ext_resource type="FontFile" path="res://Assets/Fonts/Simple.tres" id="2"]
 [ext_resource type="FontFile" uid="uid://bksggk1e6s5j4" path="res://Assets/Fonts/Rubik-VariableFont_wght.ttf" id="3"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/NoteRange.tscn" id="4_3b5jw"]
 
-[sub_resource type="FontFile" id=2]
-size = 12
-use_filter = true
-font_data = ExtResource( 3 )
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("3"), ExtResource("3")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
 
-[sub_resource type="Theme" id=1]
-default_font = SubResource( 2 )
+[sub_resource type="Theme" id="1"]
+default_font = SubResource("2")
 
-[node name="OptionsPanel" type="PopupMenu"]
-offset_top = 66.0
-offset_right = 20.0
-offset_bottom = 86.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme = SubResource( 1 )
-theme_override_fonts/font = ExtResource( 2 )
+[node name="OptionsPanel" type="PopupMenu" unique_id=14984154]
+oversampling_override = 1.0
+visible = true
+theme = SubResource("1")
+theme_override_fonts/font = ExtResource("2")
 hide_on_item_selection = false
 hide_on_checkable_item_selection = false
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("1")
+note_range_scene = ExtResource("4_3b5jw")
 
 [connection signal="id_pressed" from="." to="." method="_on_OptionsPanel_id_pressed"]
 [connection signal="mouse_entered" from="." to="." method="_on_OptionsPanel_mouse_entered"]

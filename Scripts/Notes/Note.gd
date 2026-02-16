@@ -1,8 +1,8 @@
+class_name Note
 extends Node2D
 
-
 var type : String = "semibreve"
-var accidental : int = 0
+var accidental : NoteMapping.Accidental
 var pitch : int
 var note_str : String
 var alive : bool = true

@@ -1,6 +1,6 @@
 extends Control
 
-@onready var Note : PackedScene = load("res://Scenes/Objects/Note.tscn")
+@export var note_scene : PackedScene
 
 @onready var InputReader : Node
 @onready var NoteGroup : Node
@@ -22,7 +22,7 @@ var max_combo : int = 0
 
 var tone_offset : float
 
-var current_ex
+var current_exercise : Exercise
 
 func _ready():
 	# generate a new random seed
@@ -52,7 +52,7 @@ func _ready():
 	tone_offset /= 10
 	
 	print(tone_offset)
-	load_exercise("RandomNote")
+	load_exercise(RandomNote.new(self))
 
 func _process(_delta):
 	# process note hits from input
@@ -69,7 +69,7 @@ func _process(_delta):
 			print("you got it bro!")
 			note.hit()
 			_set_combo(combo + 1)
-			current_ex.next_step()
+			current_exercise.next_step()
 		# wrong note pressed :(
 		else:
 			print("man, u suck...")
@@ -78,10 +78,8 @@ func _process(_delta):
 	InputReader.just_pressed.clear()
 	InputReader.just_released.clear()
 
-func load_exercise(ex_name):
-	print(">>>loading exercise: " + ex_name)
-	var exercise_script = load("res://Scripts/Exercises/" + ex_name + ".gd")
-	current_ex = exercise_script.new(self)
+func load_exercise(exercise : Exercise):
+	current_exercise = exercise
 
 func get_note_position_by_name(note_str) -> Vector2:
 	var octave = int(note_str[0])
@@ -95,7 +93,7 @@ func get_note_position_by_name(note_str) -> Vector2:
 
 func add_note(pitch):
 	# pitch 60 = 6C
-	var note = Note.instantiate()
+	var note : Note = note_scene.instantiate()
 	var note_str = NoteMapping.notes[pitch]
 	note.position = get_note_position_by_name(note_str)
 	note.pitch = pitch
@@ -134,7 +132,7 @@ func is_key_just_released(pitch):
 
 func _on_NextStep_pressed():
 	kill_all_notes()
-	current_ex.next_step()
+	current_exercise.next_step()
 
 
 func _on_Configs_pressed():

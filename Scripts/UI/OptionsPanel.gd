@@ -1,8 +1,8 @@
 extends PopupMenu
 
-var EC : Node # ExerciseController
+@export var note_range_scene : PackedScene
 
-var note_range_scene = preload("res://Scenes/UI/NoteRange.tscn")
+var EC : Node # ExerciseController
 
 var is_mouse_inside : bool = false
 
@@ -58,7 +58,7 @@ func _on_OptionsPanel_id_pressed(id):
 		11:
 			if EC.note_range_open:
 				return
-			var note_range = note_range_scene.instantiate()
+			var note_range : NoteRange = note_range_scene.instantiate()
 			note_range.init(EC)
 			EC.add_child(note_range)
 			note_range.visible = true

@@ -1,5 +1,4 @@
 class_name Exercise
-extends Node
 
 var ExerciseController : Node
 var note_scene

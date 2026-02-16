@@ -1,3 +1,4 @@
+class_name NoteRange
 extends AcceptDialog
 
 var pitch_range : Array

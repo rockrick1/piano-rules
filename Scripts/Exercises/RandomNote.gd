@@ -1,3 +1,4 @@
+class_name RandomNote
 extends Exercise
 
 var last_note : int = -1
@@ -27,5 +28,4 @@ func _spawn_random_note():
 	last_note = pitch
 
 func next_step():
-#	_delete_current_notes()
 	_spawn_random_note()
