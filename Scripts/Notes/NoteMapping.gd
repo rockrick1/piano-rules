@@ -1,10 +1,6 @@
 class_name NoteMapping
 
-enum Accidental {
-	REGULAR,
-	SHARP,
-	FLAT
-}
+
 
 const offsets = {
 	"C" : 0,

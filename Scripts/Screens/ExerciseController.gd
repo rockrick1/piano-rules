@@ -93,7 +93,7 @@ func get_note_position_by_name(note_str) -> Vector2:
 
 func add_note(pitch):
 	# pitch 60 = 6C
-	var note : Note = note_scene.instantiate()
+	var note : NoteView = note_scene.instantiate()
 	var note_str = NoteMapping.notes[pitch]
 	note.position = get_note_position_by_name(note_str)
 	note.pitch = pitch
