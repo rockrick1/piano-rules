@@ -25,40 +25,40 @@ var tone_offset : float
 var current_exercise : Exercise
 
 func _ready():
-	# generate a new random seed
-	randomize()
-	
-	# input reading scene
-	InputReader = $InputReader
-	
-	# parent node for all the notes on screen
-	NoteGroup = $MarginContainer/MarginContainer/TextureRect/Notes
-	
-	# options panel, with many settings
-	OptionsPanel = $MarginContainer/Buttons/Configs/OptionsPanel
-	OptionsPanel.EC = self
-	
-	# Assist nodes
-	Assist = $MarginContainer/MarginContainer/TextureRect/Assist
-	HardAssist = $MarginContainer/MarginContainer/TextureRect/HardAssist
-	Complements = $MarginContainer/MarginContainer/TextureRect/Complements
-	Assist.visible = false
-	HardAssist.visible = false
-	Complements.get_node("TopLine").hide()
-	Complements.get_node("BotLine").hide()
-	
-	
-	tone_offset = $MarginContainer/MarginContainer/TextureRect/Anchor77.position.y - $MarginContainer/MarginContainer/TextureRect/Anchor60.position.y
-	tone_offset /= 10
-	
-	print(tone_offset)
-	load_exercise(RandomNote.new(self))
+    # generate a new random seed
+    randomize()
+    
+    # input reading scene
+    InputReader = $InputReader
+    
+    # parent node for all the notes on screen
+    NoteGroup = $MarginContainer/MarginContainer/TextureRect/Notes
+    
+    # options panel, with many settings
+    OptionsPanel = $MarginContainer/Buttons/Configs/OptionsPanel
+    OptionsPanel.EC = self
+    
+    # Assist nodes
+    Assist = $MarginContainer/MarginContainer/TextureRect/Assist
+    HardAssist = $MarginContainer/MarginContainer/TextureRect/HardAssist
+    Complements = $MarginContainer/MarginContainer/TextureRect/Complements
+    Assist.visible = false
+    HardAssist.visible = false
+    Complements.get_node("TopLine").hide()
+    Complements.get_node("BotLine").hide()
+    
+    
+    tone_offset = $MarginContainer/MarginContainer/TextureRect/Anchor77.position.y - $MarginContainer/MarginContainer/TextureRect/Anchor60.position.y
+    tone_offset /= 10
+    
+    print(tone_offset)
+    load_exercise(RandomNote.new(self))
 
 func _process(_delta):
-	# process note hits from input
-	for note in NoteGroup.get_children():
-		# doesn't consider notes that are on screen but have already been played
-		# only considers one not, for now
+    # process note hits from input
+    for note in NoteGroup.get_children():
+        # doesn't consider notes that are on screen but have already been played
+    	# only considers one not, for now
 		if (not note.alive) or len(get_just_pressed_keys()) == 0:
 			continue
 		var pitch = get_just_pressed_keys()[0]

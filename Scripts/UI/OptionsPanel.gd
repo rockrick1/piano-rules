@@ -8,41 +8,41 @@ var is_mouse_inside : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_add_config_options()
+    _add_config_options()
 
 func _input(event):
-	if Input.is_action_pressed("left_mouse") and not is_mouse_inside:
-		hide()
+    if Input.is_action_pressed("left_mouse") and not is_mouse_inside:
+        hide()
 
 ################################################################################
 
 func _add_config_options():
-	add_radio_check_item("Assist mode", 1)
-	add_radio_check_item("Hard assist mode", 2)
-	
-	add_separator("", 10)
-	
-	add_item("Note range", 11)
-	add_check_item("Accidentals", 12)
-	set_item_checked(get_item_index(12), true)
-	
-	add_separator("", 20)
-	
-	add_check_item("Any octave", 21)
-	set_item_tooltip(get_item_index(21), "Play the displayed note in any octave")
-	
-	add_separator("", 30)
-	
-	add_item("Refresh MIDI inputs", 50)
-	add_item("Quit", 100)
+    add_radio_check_item("Assist mode", 1)
+    add_radio_check_item("Hard assist mode", 2)
+    
+    add_separator("", 10)
+    
+    add_item("Note range", 11)
+    add_check_item("Accidentals", 12)
+    set_item_checked(get_item_index(12), true)
+    
+    add_separator("", 20)
+    
+    add_check_item("Any octave", 21)
+    set_item_tooltip(get_item_index(21), "Play the displayed note in any octave")
+    
+    add_separator("", 30)
+    
+    add_item("Refresh MIDI inputs", 50)
+    add_item("Quit", 100)
 
 func _on_OptionsPanel_id_pressed(id):
-	var idx = get_item_index(id)
-	match id:
-		1:
-			EC.assist_mode = not EC.assist_mode
-			EC.hard_assist_mode = false
-			EC.Assist.visible = EC.assist_mode
+    var idx = get_item_index(id)
+    match id:
+        1:
+            EC.assist_mode = not EC.assist_mode
+            EC.hard_assist_mode = false
+        	EC.Assist.visible = EC.assist_mode
 			EC.HardAssist.visible = EC.hard_assist_mode
 			var hard_assist_idx = get_item_index(2)
 			set_item_checked(idx, EC.assist_mode)

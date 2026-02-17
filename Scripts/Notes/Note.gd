@@ -11,39 +11,39 @@ var alive : bool = true
 
 
 func _ready():
-	var mat: Material = $NoteSprite.get_material()
-	mat.set_shader_parameter("strength", 0.0)
+    var mat: Material = $NoteSprite.get_material()
+    mat.set_shader_parameter("strength", 0.0)
 
 func _process(delta):
-	$NoteSprite.offset.x = shake_offset
-	$FlatSprite.offset.x = shake_offset
-	$SharpSprite.offset.x = shake_offset
+    $NoteSprite.offset.x = shake_offset
+    $FlatSprite.offset.x = shake_offset
+    $SharpSprite.offset.x = shake_offset
 
 func miss():
-	$AnimationPlayer.stop()
-	$AnimationPlayer.play("miss")
+    $AnimationPlayer.stop()
+    $AnimationPlayer.play("miss")
 
 func hit():
-	if not alive:
-		return
-	alive = false
-	$AnimationPlayer.stop()
-	$AnimationPlayer.play("hit")
+    if not alive:
+        return
+    alive = false
+    $AnimationPlayer.stop()
+    $AnimationPlayer.play("hit")
 
 func sharp():
-	accidental = NoteMapping.Accidental.SHARP
-	$FlatSprite.set_visible(false)
-	$SharpSprite.set_visible(true)
+    accidental = NoteMapping.Accidental.SHARP
+    $FlatSprite.set_visible(false)
+    $SharpSprite.set_visible(true)
 
 func flat():
-	accidental = NoteMapping.Accidental.FLAT
-	$FlatSprite.set_visible(true)
-	$SharpSprite.set_visible(false)
+    accidental = NoteMapping.Accidental.FLAT
+    $FlatSprite.set_visible(true)
+    $SharpSprite.set_visible(false)
 
 func regular():
-	accidental = NoteMapping.Accidental.REGULAR
-	$FlatSprite.set_visible(false)
-	$SharpSprite.set_visible(false)
+    accidental = NoteMapping.Accidental.REGULAR
+    $FlatSprite.set_visible(false)
+    $SharpSprite.set_visible(false)
 
 func die():
-	queue_free()
+    queue_free()
