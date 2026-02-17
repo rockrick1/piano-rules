@@ -43,7 +43,7 @@ func _unhandled_input(event : InputEvent):
     if (event is InputEventMIDI):
 
         var event_dump : String = ""
-        var played_note : String = ""
+        var played_note : Note
         var props : Dictionary = {}
 
         #event_dump += "chn: {channel} msg: {message}\n".format({"channel": event.channel, "message": event.message})
@@ -58,7 +58,7 @@ func _unhandled_input(event : InputEvent):
         event_dump += "\n"
 
         # Currently played note is the pitch in the message
-        played_note = NoteMapping.notes[props["pitch"]]
+        played_note = Note.new(props["pitch"])
 
         # Note: If the instrument isn't keyboard related it will possibly mess up the display.
         var key_index = event.pitch % 12
@@ -67,7 +67,6 @@ func _unhandled_input(event : InputEvent):
             MIDI_MESSAGE_NOTE_ON:
                 currently_pressed[props.pitch] = props
                 just_pressed[props.pitch] = props
-#                print(event_dump)
                 print(played_note)
 
             MIDI_MESSAGE_NOTE_OFF:

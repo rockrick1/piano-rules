@@ -12,8 +12,8 @@ func init(controller):
     pitch_range = ExerciseController.pitch_range
     start_label = $Buttons/Start/Label
     end_label = $Buttons/End/Label
-    var start = NoteMapping.notes[pitch_range[0]]
-    var end = NoteMapping.notes[pitch_range[1]]
+    var start := Note.new(pitch_range[0])
+    var end := Note.new(pitch_range[1])
     start_label.set_text(start)
     end_label.set_text(end)
     
@@ -27,21 +27,21 @@ func _on_Start_Up_pressed():
     if pitch_range[0] + 1 >= pitch_range[1]:
         return
     pitch_range[0] = pitch_range[0] + 1
-    var start = NoteMapping.notes[pitch_range[0]]
+    var start := Note.new(pitch_range[0])
     start_label.set_text(start)
     _set_line_pos("Top", start)
 
 
 func _on_Start_Down_pressed():
     pitch_range[0] = pitch_range[0] - 1
-    var start = NoteMapping.notes[pitch_range[0]]
+    var start := Note.new(pitch_range[0])
     start_label.set_text(start)
     _set_line_pos("Top", start)
 
 
 func _on_End_Up_pressed():
     pitch_range[1] = pitch_range[1] + 1
-    var end = NoteMapping.notes[pitch_range[1]]
+    var end := Note.new(pitch_range[1])
     end_label.set_text(end)
     _set_line_pos("Bot", end)
 
@@ -50,7 +50,7 @@ func _on_End_Down_pressed():
     if pitch_range[1] - 1 <= pitch_range[0]:
         return
     pitch_range[1] = pitch_range[1] - 1
-    var end = NoteMapping.notes[pitch_range[1]]
+    var end := Note.new(pitch_range[1])
     end_label.set_text(end)
     _set_line_pos("Bot", end)
 

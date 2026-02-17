@@ -64,6 +64,9 @@ func _init(pitch : int) -> void:
             letter = Letter.B
             accidental = Accidental.REGULAR
 
+func to_simple_str():
+    return str(self).substr(1)
+
 func _to_string() -> String:
     var accidental_str : String
     match self.accidental:

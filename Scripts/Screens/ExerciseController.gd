@@ -1,3 +1,4 @@
+class_name ExerciseController
 extends Control
 
 @export var note_scene : PackedScene
@@ -47,7 +48,6 @@ func _ready():
     Complements.get_node("TopLine").hide()
     Complements.get_node("BotLine").hide()
     
-    
     tone_offset = $MarginContainer/MarginContainer/TextureRect/Anchor77.position.y - $MarginContainer/MarginContainer/TextureRect/Anchor60.position.y
     tone_offset /= 10
     
@@ -56,24 +56,24 @@ func _ready():
 
 func _process(_delta):
     # process note hits from input
-    for note in NoteGroup.get_children():
+    for note_view : NoteView in NoteGroup.get_children():
         # doesn't consider notes that are on screen but have already been played
         # only considers one not, for now
-        if (not note.alive) or len(get_just_pressed_keys()) == 0:
+        if (not note_view.alive) or len(get_just_pressed_keys()) == 0:
             continue
         var pitch = get_just_pressed_keys()[0]
-        var note_str = NoteMapping.notes[note.pitch]
-        var input_note_str = NoteMapping.notes[pitch]
+        var pressed_note := Note.new(pitch)
+        var required_note := Note.new(note_view.note.pitch)
         # hit!
-        if note.pitch == pitch or (any_octave && note_str.substr(1) == input_note_str.substr(1)):
+        if required_note.pitch == pressed_note.pitch or (any_octave && pressed_note.letter == required_note.letter && pressed_note.accidental == required_note.accidental):
             print("you got it bro!")
-            note.hit()
+            note_view.hit()
             _set_combo(combo + 1)
             current_exercise.next_step()
         # wrong note pressed :(
         else:
             print("man, u suck...")
-            note.miss()
+            note_view.miss()
             _set_combo(0)
     InputReader.just_pressed.clear()
     InputReader.just_released.clear()
@@ -81,35 +81,23 @@ func _process(_delta):
 func load_exercise(exercise : Exercise):
     current_exercise = exercise
 
-func get_note_position_by_name(note_str) -> Vector2:
-    var octave = int(note_str[0])
-    var full_note = note_str.substr(1)
-    var note = note_str[1]
-    var note_offset = NoteMapping.offsets[note]
+func get_note_position(note : Note) -> Vector2:
+    var note_offset = NoteMapping.offsets[note.letter]
     var octave_offset = tone_offset * 7
-    var dist = (note_offset * tone_offset) + ((octave - 6) * octave_offset)
-    var pos = $MarginContainer/MarginContainer/TextureRect/Anchor60.position + Vector2(((note_offset + octave) % 2) * -50, dist)
+    var dist = (note_offset * tone_offset) + ((note.octave - 6) * octave_offset)
+    var pos = $MarginContainer/MarginContainer/TextureRect/Anchor60.position + Vector2(((note_offset + note.octave) % 2) * -50, dist)
     return pos
 
-func add_note(pitch):
-    # pitch 60 = 6C
-    var note : NoteView = note_scene.instantiate()
-    var note_str = NoteMapping.notes[pitch]
-    note.position = get_note_position_by_name(note_str)
-    note.pitch = pitch
-    note.note_str = note_str
-    var full_note = note_str.substr(1)
-    if "#" in full_note:
-        note.sharp()
-    elif "b" in full_note:
-        note.flat()
-    $MarginContainer/MarginContainer/TextureRect/Notes.add_child(note)
-    print("add note in pitch "+str(pitch))
+func add_note(note : Note):
+    var note_view : NoteView = note_scene.instantiate()
+    note_view.setup(note)
+    note_view.position = get_note_position(note)
+    $MarginContainer/MarginContainer/TextureRect/Notes.add_child(note_view)
 
 # murders all notes on screen
 func kill_all_notes():
     for note in NoteGroup.get_children():
-        note.die()
+        note.queue_free()
 
 func get_pressed_keys():
     return InputReader.currently_pressed.keys()
@@ -134,10 +122,8 @@ func _on_NextStep_pressed():
     kill_all_notes()
     current_exercise.next_step()
 
-
 func _on_Configs_pressed():
     OptionsPanel.visible = not OptionsPanel.visible
-#    $OptionsPanel.popup()
 
 func _set_combo(combo):
     self.combo = combo

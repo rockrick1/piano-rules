@@ -1,7 +1,7 @@
 class_name Exercise
 
-var ExerciseController : Node
-var note_scene
+var exercise_controller : ExerciseController
+var note_scene : PackedScene
 
 func _init():
     note_scene = load("res://Scenes/Objects/Note.tscn")
