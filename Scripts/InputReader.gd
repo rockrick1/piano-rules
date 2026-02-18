@@ -1,3 +1,4 @@
+class_name InputReader
 extends Node
 
 var currently_pressed : Dictionary = {}

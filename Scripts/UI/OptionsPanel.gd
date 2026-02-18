@@ -2,7 +2,7 @@ extends PopupMenu
 
 @export var note_range_scene : PackedScene
 
-var EC : Node # ExerciseController
+var exercise_controller : ExerciseController
 
 var is_mouse_inside : bool = false
 
@@ -13,8 +13,6 @@ func _ready():
 func _input(event):
     if Input.is_action_pressed("left_mouse") and not is_mouse_inside:
         hide()
-
-################################################################################
 
 func _add_config_options():
     add_radio_check_item("Assist mode", 1)
@@ -40,45 +38,43 @@ func _on_OptionsPanel_id_pressed(id):
     var idx = get_item_index(id)
     match id:
         1:
-            EC.assist_mode = not EC.assist_mode
-            EC.hard_assist_mode = false
-            EC.Assist.visible = EC.assist_mode
-            EC.HardAssist.visible = EC.hard_assist_mode
+            exercise_controller.assist_mode = not exercise_controller.assist_mode
+            exercise_controller.hard_assist_mode = false
+            exercise_controller.Assist.visible = exercise_controller.assist_mode
+            exercise_controller.HardAssist.visible = exercise_controller.hard_assist_mode
             var hard_assist_idx = get_item_index(2)
-            set_item_checked(idx, EC.assist_mode)
-            set_item_checked(hard_assist_idx, EC.hard_assist_mode)
+            set_item_checked(idx, exercise_controller.assist_mode)
+            set_item_checked(hard_assist_idx, exercise_controller.hard_assist_mode)
         2:
-            EC.hard_assist_mode = not EC.hard_assist_mode
-            EC.assist_mode = false
-            EC.Assist.visible = EC.assist_mode
-            EC.HardAssist.visible = EC.hard_assist_mode
+            exercise_controller.hard_assist_mode = not exercise_controller.hard_assist_mode
+            exercise_controller.assist_mode = false
+            exercise_controller.Assist.visible = exercise_controller.assist_mode
+            exercise_controller.HardAssist.visible = exercise_controller.hard_assist_mode
             var assist_idx = get_item_index(1)
-            set_item_checked(idx, EC.hard_assist_mode)
-            set_item_checked(assist_idx, EC.assist_mode)
+            set_item_checked(idx, exercise_controller.hard_assist_mode)
+            set_item_checked(assist_idx, exercise_controller.assist_mode)
         11:
-            if EC.note_range_open:
+            if exercise_controller.note_range_open:
                 return
             var note_range : NoteRange = note_range_scene.instantiate()
-            note_range.init(EC)
-            EC.add_child(note_range)
+            note_range.init(exercise_controller)
+            exercise_controller.add_child(note_range)
             note_range.visible = true
-            EC.note_range_open = true
+            exercise_controller.note_range_open = true
         12:
-            EC.accidentals = not EC.accidentals
-            set_item_checked(idx, EC.accidentals)
+            exercise_controller.accidentals = not exercise_controller.accidentals
+            set_item_checked(idx, exercise_controller.accidentals)
         21:
-            EC.any_octave = not EC.any_octave
-            set_item_checked(idx, EC.any_octave)
+            exercise_controller.any_octave = not exercise_controller.any_octave
+            set_item_checked(idx, exercise_controller.any_octave)
         50:
             OS.open_midi_inputs()
             hide()
         100:
             get_tree().quit()
 
-
 func _on_OptionsPanel_mouse_entered():
     is_mouse_inside = true
-
 
 func _on_OptionsPanel_mouse_exited():
     is_mouse_inside = false

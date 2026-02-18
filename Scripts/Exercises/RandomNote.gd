@@ -9,9 +9,6 @@ func _init(controller):
     pitch_range = exercise_controller.pitch_range
     next_step()
 
-func _delete_current_notes():
-    exercise_controller.kill_all_notes()
-
 # generates a random pitch value, different from the last
 func _spawn_random_note():
     var pitch := last_pitch
@@ -25,7 +22,6 @@ func _spawn_random_note():
         note = Note.new(pitch)
     exercise_controller.add_note(note)
     last_pitch = pitch
-    print("created note at %s" % pitch)
 
 func _get_random_pitch() -> int:
     return randi() % (pitch_range[1] - pitch_range[0]) + pitch_range[0]

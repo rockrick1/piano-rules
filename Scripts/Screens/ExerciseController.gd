@@ -37,7 +37,7 @@ func _ready():
     
     # options panel, with many settings
     OptionsPanel = $MarginContainer/Buttons/Configs/OptionsPanel
-    OptionsPanel.EC = self
+    OptionsPanel.exercise_controller = self
     
     # Assist nodes
     Assist = $MarginContainer/MarginContainer/TextureRect/Assist
@@ -55,7 +55,6 @@ func _ready():
     load_exercise(RandomNote.new(self))
 
 func _process(_delta):
-    # process note hits from input
     for note_view : NoteView in NoteGroup.get_children():
         # doesn't consider notes that are on screen but have already been played
         # only considers one not, for now
@@ -81,17 +80,17 @@ func _process(_delta):
 func load_exercise(exercise : Exercise):
     current_exercise = exercise
 
-func get_note_position(note : Note) -> Vector2:
-    var note_offset = NoteMapping.offsets[note.letter]
-    var octave_offset = tone_offset * 7
-    var dist = (note_offset * tone_offset) + ((note.octave - 6) * octave_offset)
+func _get_note_position(note : Note) -> Vector2:
+    var note_offset : int = note.letter
+    var octave_offset := tone_offset * 7
+    var dist := (note_offset * tone_offset) + ((note.octave - 6) * octave_offset)
     var pos = $MarginContainer/MarginContainer/TextureRect/Anchor60.position + Vector2(((note_offset + note.octave) % 2) * -50, dist)
     return pos
 
 func add_note(note : Note):
     var note_view : NoteView = note_scene.instantiate()
     note_view.setup(note)
-    note_view.position = get_note_position(note)
+    note_view.position = _get_note_position(note)
     $MarginContainer/MarginContainer/TextureRect/Notes.add_child(note_view)
 
 # murders all notes on screen
