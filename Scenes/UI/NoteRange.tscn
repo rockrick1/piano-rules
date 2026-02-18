@@ -1,24 +1,15 @@
-[gd_scene format=2]
+[gd_scene format=3 uid="uid://cv3po1ib02wk"]
 
 [ext_resource type="Script" uid="uid://e1vkwxw1f8b3" path="res://Scripts/UI/NoteRange.gd" id="1"]
 [ext_resource type="FontFile" path="res://Assets/Fonts/Simple.tres" id="2"]
 
-[node name="Control" type="AcceptDialog"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 201.434
-offset_top = -231.979
-offset_right = 455.434
-offset_bottom = -88.9789
-window_title = ""
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Control" type="AcceptDialog" unique_id=2086538381 node_paths=PackedStringArray("start_label", "end_label")]
+script = ExtResource("1")
+start_label = NodePath("Buttons/Start/Label")
+end_label = NodePath("Buttons/End/Label")
 
-[node name="Buttons" type="HBoxContainer" parent="."]
+[node name="Buttons" type="HBoxContainer" parent="." unique_id=1077804523]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 8.0
@@ -26,74 +17,54 @@ offset_top = 8.0
 offset_right = -8.0
 offset_bottom = -36.0
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Start" type="VBoxContainer" parent="Buttons"]
-offset_right = 95.0
-offset_bottom = 99.0
+[node name="Start" type="VBoxContainer" parent="Buttons" unique_id=1090138649]
+layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Up" type="Button" parent="Buttons/Start"]
-offset_top = 11.0
-offset_right = 95.0
-offset_bottom = 36.0
-theme_override_fonts/font = ExtResource( 2 )
+[node name="Up" type="Button" parent="Buttons/Start" unique_id=834884694]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2")
 text = "^"
 
-[node name="Label" type="Label" parent="Buttons/Start"]
-offset_top = 40.0
-offset_right = 95.0
-offset_bottom = 59.0
+[node name="Label" type="Label" parent="Buttons/Start" unique_id=1673300428]
+layout_mode = 2
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource("2")
 text = "35"
-align = 1
+horizontal_alignment = 1
 
-[node name="Down" type="Button" parent="Buttons/Start"]
-offset_top = 63.0
-offset_right = 95.0
-offset_bottom = 88.0
-theme_override_fonts/font = ExtResource( 2 )
+[node name="Down" type="Button" parent="Buttons/Start" unique_id=1373977765]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2")
 text = "v"
 
-[node name="MarginContainer" type="MarginContainer" parent="Buttons"]
-offset_left = 99.0
-offset_right = 139.0
-offset_bottom = 99.0
-theme_override_constants/margin_right = 20
+[node name="MarginContainer" type="MarginContainer" parent="Buttons" unique_id=428143892]
+layout_mode = 2
 theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
 
-[node name="End" type="VBoxContainer" parent="Buttons"]
-offset_left = 143.0
-offset_right = 238.0
-offset_bottom = 99.0
+[node name="End" type="VBoxContainer" parent="Buttons" unique_id=1343087735]
+layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Up" type="Button" parent="Buttons/End"]
-offset_top = 11.0
-offset_right = 95.0
-offset_bottom = 36.0
-theme_override_fonts/font = ExtResource( 2 )
+[node name="Up" type="Button" parent="Buttons/End" unique_id=2072888410]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2")
 text = "^"
 
-[node name="Label" type="Label" parent="Buttons/End"]
-offset_top = 40.0
-offset_right = 95.0
-offset_bottom = 59.0
+[node name="Label" type="Label" parent="Buttons/End" unique_id=908672241]
+layout_mode = 2
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource( 2 )
+theme_override_fonts/font = ExtResource("2")
 text = "35"
-align = 1
+horizontal_alignment = 1
 
-[node name="Down" type="Button" parent="Buttons/End"]
-offset_top = 63.0
-offset_right = 95.0
-offset_bottom = 88.0
-theme_override_fonts/font = ExtResource( 2 )
+[node name="Down" type="Button" parent="Buttons/End" unique_id=1267890011]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2")
 text = "v"
 
 [connection signal="confirmed" from="." to="." method="_on_Control_confirmed"]

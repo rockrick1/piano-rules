@@ -452,13 +452,13 @@ width = 2.0
 default_color = Color(1, 0.219608, 0.309804, 1)
 
 [node name="Anchor77" type="Node2D" parent="MarginContainer/TextureRect" unique_id=1390954834]
-position = Vector2(288, 113)
+position = Vector2(288, 112.51361)
 
 [node name="Anchor60" type="Node2D" parent="MarginContainer/TextureRect" unique_id=510931957]
-position = Vector2(288, 212.987)
+position = Vector2(288, 212.50061)
 
 [node name="Anchor43" type="Node2D" parent="MarginContainer/TextureRect" unique_id=1319642447]
-position = Vector2(288, 312.995)
+position = Vector2(288, 312.5086)
 
 [node name="Notes" type="Node2D" parent="MarginContainer/TextureRect" unique_id=2007476199]
 
