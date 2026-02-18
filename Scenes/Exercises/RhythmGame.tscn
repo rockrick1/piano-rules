@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dxa7a6fok6wk4"]
+
+[ext_resource type="Script" uid="uid://vkyewr25wm7h" path="res://Scripts/Exercises/RhythmGame.gd" id="1_ioa5f"]
+
+[node name="RhythmGame" type="Node" unique_id=1101807575 node_paths=PackedStringArray("input_reader", "exercise_controller")]
+script = ExtResource("1_ioa5f")
+input_reader = NodePath("")
+exercise_controller = NodePath("")

@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ced3sg2tvgx5x" path="res://Scripts/Screens/ExerciseController.gd" id="1_wc8ai"]
 [ext_resource type="PackedScene" uid="uid://dcpomycyiwcvs" path="res://Scenes/Notes/Note.tscn" id="2_gbpb2"]
-[ext_resource type="Script" uid="uid://csuwwoenvx88p" path="res://Scripts/Exercises/RandomNote.gd" id="3_cawue"]
 [ext_resource type="PackedScene" path="res://Scenes/InputReader.tscn" id="3_qxl3f"]
-[ext_resource type="Script" uid="uid://vkyewr25wm7h" path="res://Scripts/Exercises/RhythmGame.gd" id="4_3wg1m"]
 [ext_resource type="Texture2D" uid="uid://bdbw66fuf4qs3" path="res://Assets/cleff.png" id="4_cawue"]
 [ext_resource type="FontFile" uid="uid://bksggk1e6s5j4" path="res://Assets/Fonts/Rubik-VariableFont_wght.ttf" id="5_3wg1m"]
 [ext_resource type="FontFile" path="res://Assets/Fonts/Simple.tres" id="6_q8fq5"]
@@ -30,7 +28,7 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 
-[node name="ExerciseView" type="Control" unique_id=1264331475 node_paths=PackedStringArray("random_note", "rhythm_game", "note_group", "options_panel", "assist", "hard_assist", "complements", "combo_label", "max_combo_label", "anchor_77", "anchor_60")]
+[node name="ExerciseView" type="Control" unique_id=1264331475 node_paths=PackedStringArray("input_reader", "exercise_parent", "note_group", "options_panel", "assist", "hard_assist", "complements", "combo_label", "max_combo_label", "anchor_77", "anchor_60")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,8 +36,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wc8ai")
-random_note = NodePath("Exercises/RandomNote")
-rhythm_game = NodePath("Exercises/RhythmGame")
+input_reader = NodePath("InputReader")
+exercise_parent = NodePath("Exercises")
 note_scene = ExtResource("2_gbpb2")
 note_group = NodePath("MarginContainer/TextureRect/Notes")
 options_panel = NodePath("MarginContainer/Buttons/Configs/OptionsPanel")
@@ -52,16 +50,6 @@ anchor_77 = NodePath("MarginContainer/TextureRect/Anchor77")
 anchor_60 = NodePath("MarginContainer/TextureRect/Anchor60")
 
 [node name="Exercises" type="Node" parent="." unique_id=966647934]
-
-[node name="RandomNote" type="Node" parent="Exercises" unique_id=2119328278 node_paths=PackedStringArray("input_reader", "exercise_controller")]
-script = ExtResource("3_cawue")
-input_reader = NodePath("../../InputReader")
-exercise_controller = NodePath("../..")
-
-[node name="RhythmGame" type="Node" parent="Exercises" unique_id=746796374 node_paths=PackedStringArray("input_reader", "exercise_controller")]
-script = ExtResource("4_3wg1m")
-input_reader = NodePath("../../InputReader")
-exercise_controller = NodePath("../..")
 
 [node name="InputReader" parent="." unique_id=1421441255 instance=ExtResource("3_qxl3f")]
 

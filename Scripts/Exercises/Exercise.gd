@@ -8,6 +8,10 @@ var combo : int = 0
 var max_combo : int = 0
 var live_notes : Array[Note]
 
+func setup(input_reader : InputReader, exercise_controller : ExerciseController):
+    self.input_reader = input_reader
+    self.exercise_controller = exercise_controller
+
 func next_step():
     pass
 

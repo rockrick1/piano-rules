@@ -1,9 +1,8 @@
 class_name ExerciseController
 extends Control
 
-@export var random_note : RandomNote
-@export var rhythm_game : RhythmGame
-
+@export var input_reader : InputReader
+@export var exercise_parent : Node
 @export var note_scene : PackedScene
 @export var note_group : Node
 @export var options_panel : Node
@@ -38,16 +37,16 @@ func _ready():
     
     tone_offset = anchor_77.position.y - anchor_60.position.y
     tone_offset /= 10
-    
-    print(tone_offset)
-    load_exercise(random_note)
 
 func _process(_delta: float) -> void:
     _update_notes()
     _update_combo()
 
-func load_exercise(exercise : Exercise):
-    current_exercise = exercise
+func load_exercise(exercise_scene : PackedScene):
+    var exercise_instance : Exercise = exercise_scene.instantiate()
+    exercise_instance.setup(input_reader, self)
+    exercise_parent.add_child(exercise_instance)
+    current_exercise = exercise_instance
 
 func get_note_position(note : Note) -> Vector2:
     var note_offset : int = note.letter

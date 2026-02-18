@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cs3000gnfpmkg"]
+
+[ext_resource type="Script" uid="uid://bw6x1io4fxule" path="res://Scripts/Screens/MainMenu.gd" id="1_60bxw"]
+[ext_resource type="PackedScene" uid="uid://brprxle6mu0u5" path="res://Scenes/Screens/ExerciseView.tscn" id="2_f35bi"]
+[ext_resource type="PackedScene" uid="uid://eoq8ouxtywf5" path="res://Scenes/Exercises/RandomNote.tscn" id="3_441x2"]
+[ext_resource type="PackedScene" uid="uid://dxa7a6fok6wk4" path="res://Scenes/Exercises/RhythmGame.tscn" id="4_qme8y"]
+
+[node name="MainMenu" type="Control" unique_id=1189905628]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_60bxw")
+controller_scene = ExtResource("2_f35bi")
+random_note_scene = ExtResource("3_441x2")
+rhythm_game_scene = ExtResource("4_qme8y")
+
+[node name="Background" type="ColorRect" parent="." unique_id=500950270]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1253093851]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 216
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 216
+theme_override_constants/margin_bottom = 150
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=732214619]
+layout_mode = 2
+alignment = 1
+
+[node name="RandomNote" type="Button" parent="MarginContainer/HBoxContainer" unique_id=2142047457]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Random
+Note"
+
+[node name="RhythmGame" type="Button" parent="MarginContainer/HBoxContainer" unique_id=903470387]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Rhythm
+Game"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/RandomNote" to="." method="_on_random_note_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/RhythmGame" to="." method="_on_rhythm_game_pressed"]
