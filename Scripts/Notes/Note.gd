@@ -16,6 +16,9 @@ enum Letter {
     B
 }
 
+signal hit
+signal miss
+
 var type : String = "semibreve"
 var octave : int
 var letter : Letter

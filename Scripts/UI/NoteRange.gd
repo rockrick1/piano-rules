@@ -49,7 +49,7 @@ func _on_End_Down_pressed():
     _set_line_pos("Bot", end)
 
 func _set_line_pos(line, note : Note):
-    var pos := Vector2(1024/2, exercise_controller._get_note_position(note).y)
+    var pos := Vector2(1024/2, exercise_controller.get_note_position(note).y)
     exercise_controller.complements.get_node(line+"Line").set_position(pos)
 
 func _on_Control_confirmed():

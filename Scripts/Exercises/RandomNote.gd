@@ -2,12 +2,13 @@ class_name RandomNote
 extends Exercise
 
 var last_pitch : int = -1
-var pitch_range : Array
 
-func _init(controller):
-    exercise_controller = controller
-    pitch_range = exercise_controller.pitch_range
+func _ready():
     next_step()
+
+func next_step():
+    live_notes.remove_at(0)
+    _spawn_random_note()
 
 # generates a random pitch value, different from the last
 func _spawn_random_note():
@@ -20,11 +21,8 @@ func _spawn_random_note():
     while pitch == last_pitch or (!exercise_controller.accidentals && (note.accidental == Note.Accidental.SHARP or note.accidental == Note.Accidental.SHARP)):
         pitch = _get_random_pitch()
         note = Note.new(pitch)
-    exercise_controller.add_note(note)
+    live_notes.append(note)
     last_pitch = pitch
 
 func _get_random_pitch() -> int:
-    return randi() % (pitch_range[1] - pitch_range[0]) + pitch_range[0]
-
-func next_step():
-    _spawn_random_note()
+    return randi() % (exercise_controller.pitch_range[1] - exercise_controller.pitch_range[0]) + exercise_controller.pitch_range[0]

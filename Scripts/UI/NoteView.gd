@@ -1,19 +1,25 @@
 class_name NoteView
 extends Node2D
 
-var type : String = "semibreve"
-var note : Note
-var alive : bool = true
+@export var shake_offset : float
 
-@export var shake_offset: float
+@onready var mat : Material = $NoteSprite.get_material()
+
+var type := "semibreve"
+var note : Note = null
+var alive := true
 
 func _ready():
-    var mat: Material = $NoteSprite.get_material()
     mat.set_shader_parameter("strength", 0.0)
 
-func setup(_note : Note):
-    note = _note
-    match _note.accidental:
+func setup(note : Note):
+    if self.note != null:
+        self.note.hit.disconnect(_on_hit)
+        self.note.miss.disconnect(_on_miss)
+    self.note = note
+    self.note.hit.connect(_on_hit)
+    self.note.miss.connect(_on_miss)
+    match note.accidental:
         Note.Accidental.REGULAR:
             _regular()
         Note.Accidental.SHARP:
@@ -26,11 +32,11 @@ func _process(delta):
     $FlatSprite.offset.x = shake_offset
     $SharpSprite.offset.x = shake_offset
 
-func miss():
+func _on_miss():
     $AnimationPlayer.stop()
     $AnimationPlayer.play("miss")
 
-func hit():
+func _on_hit():
     if not alive:
         return
     alive = false
