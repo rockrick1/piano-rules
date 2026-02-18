@@ -24,10 +24,11 @@ var octave : int
 var letter : Letter
 var accidental : Accidental
 var pitch : int
-var time : int
+var time : float
 
-func _init(pitch : int) -> void:
+func _init(pitch : int, time : float = 0) -> void:
     self.pitch = pitch
+    self.time = time
     octave = pitch / 12 + 1
     var note_index := pitch % 12
     match note_index:

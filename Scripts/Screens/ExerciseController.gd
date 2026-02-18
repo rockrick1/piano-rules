@@ -51,8 +51,9 @@ func load_exercise(exercise_scene : PackedScene):
 func get_note_position(note : Note) -> Vector2:
     var note_offset : int = note.letter
     var octave_offset := tone_offset * 7
-    var dist := (note_offset * tone_offset) + ((note.octave - 6) * octave_offset)
-    var pos := anchor_60.position + Vector2.DOWN * dist
+    var y_pos := (note_offset * tone_offset) + ((note.octave - 6) * octave_offset)
+    var x_pos := note.time
+    var pos := anchor_60.position + Vector2(x_pos, y_pos)
     return pos
 
 func _on_NextStep_pressed():
