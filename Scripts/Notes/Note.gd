@@ -21,6 +21,7 @@ var octave : int
 var letter : Letter
 var accidental : Accidental
 var pitch : int
+var time : int
 
 func _init(pitch : int) -> void:
     self.pitch = pitch

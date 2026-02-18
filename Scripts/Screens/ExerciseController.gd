@@ -3,12 +3,16 @@ extends Control
 
 @export var note_scene : PackedScene
 
-@onready var InputReader : Node
-@onready var NoteGroup : Node
-@onready var OptionsPanel : Node
-@onready var Assist : Node
-@onready var HardAssist : Node
-@onready var Complements : Node
+@export var InputReader : Node
+@export var NoteGroup : Node
+@export var OptionsPanel : Node
+@export var Assist : Node
+@export var HardAssist : Node
+@export var Complements : Node
+@export var Combo : Label
+@export var MaxCombo : Label
+@export var Anchor77 : Node2D
+@export var Anchor60 : Node2D
 
 var note_range_open : bool = false
 
@@ -29,26 +33,16 @@ func _ready():
     # generate a new random seed
     randomize()
     
-    # input reading scene
-    InputReader = $InputReader
-    
-    # parent node for all the notes on screen
-    NoteGroup = $MarginContainer/MarginContainer/TextureRect/Notes
-    
     # options panel, with many settings
-    OptionsPanel = $MarginContainer/Buttons/Configs/OptionsPanel
     OptionsPanel.exercise_controller = self
     
     # Assist nodes
-    Assist = $MarginContainer/MarginContainer/TextureRect/Assist
-    HardAssist = $MarginContainer/MarginContainer/TextureRect/HardAssist
-    Complements = $MarginContainer/MarginContainer/TextureRect/Complements
     Assist.visible = false
     HardAssist.visible = false
     Complements.get_node("TopLine").hide()
     Complements.get_node("BotLine").hide()
     
-    tone_offset = $MarginContainer/MarginContainer/TextureRect/Anchor77.position.y - $MarginContainer/MarginContainer/TextureRect/Anchor60.position.y
+    tone_offset = Anchor77.position.y - Anchor60.position.y
     tone_offset /= 10
     
     print(tone_offset)
@@ -84,14 +78,14 @@ func _get_note_position(note : Note) -> Vector2:
     var note_offset : int = note.letter
     var octave_offset := tone_offset * 7
     var dist := (note_offset * tone_offset) + ((note.octave - 6) * octave_offset)
-    var pos = $MarginContainer/MarginContainer/TextureRect/Anchor60.position + Vector2(((note_offset + note.octave) % 2) * -50, dist)
+    var pos := Anchor60.position + Vector2.DOWN * dist
     return pos
 
 func add_note(note : Note):
     var note_view : NoteView = note_scene.instantiate()
     note_view.setup(note)
     note_view.position = _get_note_position(note)
-    $MarginContainer/MarginContainer/TextureRect/Notes.add_child(note_view)
+    NoteGroup.add_child(note_view)
 
 # murders all notes on screen
 func kill_all_notes():
@@ -127,5 +121,5 @@ func _on_Configs_pressed():
 func _set_combo(combo):
     self.combo = combo
     max_combo = max(max_combo, combo)
-    $MarginContainer/Buttons/Combos/Combo.set_text("Combo: "+str(combo))
-    $MarginContainer/Buttons/Combos/MaxCombo.set_text("Max: "+str(max_combo))
+    Combo.set_text("Combo: "+str(combo))
+    MaxCombo.set_text("Max: "+str(max_combo))
