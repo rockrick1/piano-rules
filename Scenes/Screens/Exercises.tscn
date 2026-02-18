@@ -28,7 +28,7 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 
-[node name="Exercises" type="Control" unique_id=1264331475 node_paths=PackedStringArray("InputReader", "NoteGroup", "OptionsPanel", "Assist", "HardAssist", "Complements", "Combo", "MaxCombo", "Anchor77", "Anchor60")]
+[node name="Exercises" type="Control" unique_id=1264331475 node_paths=PackedStringArray("input_reader", "note_group", "options_panel", "assist", "hard_assist", "complements", "combo_label", "max_combo_label", "anchor_77", "anchor_60")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,16 +37,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pdybv")
 note_scene = ExtResource("2_2ki3s")
-InputReader = NodePath("InputReader")
-NoteGroup = NodePath("MarginContainer/TextureRect/Notes")
-OptionsPanel = NodePath("MarginContainer/Buttons/Configs/OptionsPanel")
-Assist = NodePath("MarginContainer/TextureRect/Assist")
-HardAssist = NodePath("MarginContainer/TextureRect/HardAssist")
-Complements = NodePath("MarginContainer/TextureRect/Complements")
-Combo = NodePath("MarginContainer/Buttons/Combos/Combo")
-MaxCombo = NodePath("MarginContainer/Buttons/Combos/MaxCombo")
-Anchor77 = NodePath("MarginContainer/TextureRect/Anchor77")
-Anchor60 = NodePath("MarginContainer/TextureRect/Anchor60")
+input_reader = NodePath("InputReader")
+note_group = NodePath("MarginContainer/TextureRect/Notes")
+options_panel = NodePath("MarginContainer/Buttons/Configs/OptionsPanel")
+assist = NodePath("MarginContainer/TextureRect/Assist")
+hard_assist = NodePath("MarginContainer/TextureRect/HardAssist")
+complements = NodePath("MarginContainer/TextureRect/Complements")
+combo_label = NodePath("MarginContainer/Buttons/Combos/Combo")
+max_combo_label = NodePath("MarginContainer/Buttons/Combos/MaxCombo")
+anchor_77 = NodePath("MarginContainer/TextureRect/Anchor77")
+anchor_60 = NodePath("MarginContainer/TextureRect/Anchor60")
 
 [node name="InputReader" parent="." unique_id=1421441255 instance=ExtResource("2_5aagi")]
 

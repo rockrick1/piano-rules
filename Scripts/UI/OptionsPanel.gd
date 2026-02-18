@@ -40,16 +40,16 @@ func _on_OptionsPanel_id_pressed(id):
         1:
             exercise_controller.assist_mode = not exercise_controller.assist_mode
             exercise_controller.hard_assist_mode = false
-            exercise_controller.Assist.visible = exercise_controller.assist_mode
-            exercise_controller.HardAssist.visible = exercise_controller.hard_assist_mode
+            exercise_controller.assist.visible = exercise_controller.assist_mode
+            exercise_controller.hard_assist.visible = exercise_controller.hard_assist_mode
             var hard_assist_idx = get_item_index(2)
             set_item_checked(idx, exercise_controller.assist_mode)
             set_item_checked(hard_assist_idx, exercise_controller.hard_assist_mode)
         2:
             exercise_controller.hard_assist_mode = not exercise_controller.hard_assist_mode
             exercise_controller.assist_mode = false
-            exercise_controller.Assist.visible = exercise_controller.assist_mode
-            exercise_controller.HardAssist.visible = exercise_controller.hard_assist_mode
+            exercise_controller.assist.visible = exercise_controller.assist_mode
+            exercise_controller.hard_assist.visible = exercise_controller.hard_assist_mode
             var assist_idx = get_item_index(1)
             set_item_checked(idx, exercise_controller.hard_assist_mode)
             set_item_checked(assist_idx, exercise_controller.assist_mode)

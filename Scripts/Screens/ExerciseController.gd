@@ -3,16 +3,16 @@ extends Control
 
 @export var note_scene : PackedScene
 
-@export var InputReader : Node
-@export var NoteGroup : Node
-@export var OptionsPanel : Node
-@export var Assist : Node
-@export var HardAssist : Node
-@export var Complements : Node
-@export var Combo : Label
-@export var MaxCombo : Label
-@export var Anchor77 : Node2D
-@export var Anchor60 : Node2D
+@export var input_reader : InputReader
+@export var note_group : Node
+@export var options_panel : Node
+@export var assist : Node
+@export var hard_assist : Node
+@export var complements : Node
+@export var combo_label : Label
+@export var max_combo_label : Label
+@export var anchor_77 : Node2D
+@export var anchor_60 : Node2D
 
 var note_range_open : bool = false
 
@@ -34,22 +34,22 @@ func _ready():
     randomize()
     
     # options panel, with many settings
-    OptionsPanel.exercise_controller = self
+    options_panel.exercise_controller = self
     
     # Assist nodes
-    Assist.visible = false
-    HardAssist.visible = false
-    Complements.get_node("TopLine").hide()
-    Complements.get_node("BotLine").hide()
+    assist.visible = false
+    hard_assist.visible = false
+    complements.get_node("TopLine").hide()
+    complements.get_node("BotLine").hide()
     
-    tone_offset = Anchor77.position.y - Anchor60.position.y
+    tone_offset = anchor_77.position.y - anchor_60.position.y
     tone_offset /= 10
     
     print(tone_offset)
     load_exercise(RandomNote.new(self))
 
 func _process(_delta):
-    for note_view : NoteView in NoteGroup.get_children():
+    for note_view : NoteView in note_group.get_children():
         # doesn't consider notes that are on screen but have already been played
         # only considers one not, for now
         if (not note_view.alive) or len(get_just_pressed_keys()) == 0:
@@ -68,8 +68,8 @@ func _process(_delta):
             print("man, u suck...")
             note_view.miss()
             _set_combo(0)
-    InputReader.just_pressed.clear()
-    InputReader.just_released.clear()
+    input_reader.just_pressed.clear()
+    input_reader.just_released.clear()
 
 func load_exercise(exercise : Exercise):
     current_exercise = exercise
@@ -78,37 +78,37 @@ func _get_note_position(note : Note) -> Vector2:
     var note_offset : int = note.letter
     var octave_offset := tone_offset * 7
     var dist := (note_offset * tone_offset) + ((note.octave - 6) * octave_offset)
-    var pos := Anchor60.position + Vector2.DOWN * dist
+    var pos := anchor_60.position + Vector2.DOWN * dist
     return pos
 
 func add_note(note : Note):
     var note_view : NoteView = note_scene.instantiate()
     note_view.setup(note)
     note_view.position = _get_note_position(note)
-    NoteGroup.add_child(note_view)
+    note_group.add_child(note_view)
 
 # murders all notes on screen
 func kill_all_notes():
-    for note in NoteGroup.get_children():
+    for note in note_group.get_children():
         note.queue_free()
 
 func get_pressed_keys():
-    return InputReader.currently_pressed.keys()
+    return input_reader.currently_pressed.keys()
 
 func get_just_pressed_keys():
-    return InputReader.just_pressed.keys()
+    return input_reader.just_pressed.keys()
 
 func get_just_released_keys():
-    return InputReader.just_released.keys()
+    return input_reader.just_released.keys()
 
 func is_key_pressed(pitch):
-    return InputReader.currently_pressed.has(pitch)
+    return input_reader.currently_pressed.has(pitch)
 
 func is_key_just_pressed(pitch):
-    return InputReader.just_pressed.has(pitch)
+    return input_reader.just_pressed.has(pitch)
 
 func is_key_just_released(pitch):
-    return InputReader.just_released.has(pitch)
+    return input_reader.just_released.has(pitch)
 
 
 func _on_NextStep_pressed():
@@ -116,10 +116,10 @@ func _on_NextStep_pressed():
     current_exercise.next_step()
 
 func _on_Configs_pressed():
-    OptionsPanel.visible = not OptionsPanel.visible
+    options_panel.visible = not options_panel.visible
 
 func _set_combo(combo):
     self.combo = combo
     max_combo = max(max_combo, combo)
-    Combo.set_text("Combo: "+str(combo))
-    MaxCombo.set_text("Max: "+str(max_combo))
+    combo_label.set_text("Combo: "+str(combo))
+    max_combo_label.set_text("Max: "+str(max_combo))

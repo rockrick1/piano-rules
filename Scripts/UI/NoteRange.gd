@@ -17,8 +17,8 @@ func init(controller):
     
     _set_line_pos("Top", start)
     _set_line_pos("Bot", end)
-    exercise_controller.Complements.get_node("TopLine").show()
-    exercise_controller.Complements.get_node("BotLine").show()
+    exercise_controller.complements.get_node("TopLine").show()
+    exercise_controller.complements.get_node("BotLine").show()
 
 func _on_Start_Up_pressed():
     if pitch_range[0] + 1 >= pitch_range[1]:
@@ -50,10 +50,10 @@ func _on_End_Down_pressed():
 
 func _set_line_pos(line, note : Note):
     var pos := Vector2(1024/2, exercise_controller._get_note_position(note).y)
-    exercise_controller.Complements.get_node(line+"Line").set_position(pos)
+    exercise_controller.complements.get_node(line+"Line").set_position(pos)
 
 func _on_Control_confirmed():
     exercise_controller.note_range_open = false
-    exercise_controller.Complements.get_node("TopLine").hide()
-    exercise_controller.Complements.get_node("BotLine").hide()
+    exercise_controller.complements.get_node("TopLine").hide()
+    exercise_controller.complements.get_node("BotLine").hide()
     queue_free()
