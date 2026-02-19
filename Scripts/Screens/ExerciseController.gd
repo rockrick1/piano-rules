@@ -18,8 +18,9 @@ var note_range_open := false
 var assist_mode := false
 var hard_assist_mode := false
 var pitch_range : Array[int] = [60,87]
-var any_octave := false
-var accidentals := true
+var scale_type : Scale.Type = Scale.Type.MAJOR
+var scale_letter : Note.Letter
+var scale_accidental : Note.Accidental
 var tone_offset : float
 var current_exercise : Exercise
 var note_views : Array[NoteView]
@@ -55,6 +56,15 @@ func get_note_position(note : Note) -> Vector2:
     var x_pos := note.time
     var pos := anchor_60.position + Vector2(x_pos, y_pos)
     return pos
+
+func create_note_in_scale() -> Note:
+    return Note.create_in_scale(
+        scale_letter,
+        scale_accidental,
+        scale_type,
+        pitch_range[0],
+        pitch_range[1],
+    )
 
 func _on_NextStep_pressed():
     current_exercise.next_step()

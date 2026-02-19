@@ -16,28 +16,6 @@ func next_step():
     pass
 
 func _process(_delta) -> void:
-    if len(live_notes) == 0:
-        return
-    if len(get_just_pressed_keys()) == 0:
-        return
-    
-    var pitch = get_just_pressed_keys()[0]
-    var required_note := live_notes[0]
-    var pressed_note := Note.new(pitch)
-    # hit!
-    if required_note.pitch == pressed_note.pitch or \
-    (exercise_controller.any_octave && pressed_note.letter == required_note.letter && \
-    pressed_note.accidental == required_note.accidental):
-        print("you got it bro!")
-        required_note.hit.emit()
-        combo += 1
-        max_combo = max(max_combo, combo)
-        next_step()
-    # wrong note pressed :(
-    else:
-        print("man, u suck...")
-        required_note.miss.emit()
-        combo = 0
     input_reader.just_pressed.clear()
     input_reader.just_released.clear()
 

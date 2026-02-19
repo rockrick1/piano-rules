@@ -69,8 +69,51 @@ func _init(pitch : int, time : float = 0) -> void:
             letter = Letter.B
             accidental = Accidental.REGULAR
 
-func to_simple_str():
-    return str(self).substr(1)
+static func create_in_scale(
+    root_letter : Letter,
+    root_accidental : Accidental,
+    scale : Scale.Type,
+    min_pitch : int,
+    max_pitch : int,
+    time : float = 0.0
+) -> Note:
+    var valid_pitches : Array[int] = []
+    var root_pitch_class := _letter_to_pitch_class(root_letter)
+
+    match root_accidental:
+        Accidental.SHARP:
+            root_pitch_class += 1
+        Accidental.FLAT:
+            root_pitch_class -= 1
+
+    root_pitch_class = (root_pitch_class + 12) % 12
+
+    # Collect all pitches in range that belong to scale
+    for p in range(min_pitch, max_pitch + 1):
+        var relative := (p - root_pitch_class) % 12
+        if relative < 0:
+            relative += 12
+
+        if relative in Scale.INTERVALS[scale]:
+            valid_pitches.append(p)
+
+    if valid_pitches.is_empty():
+        push_error("No valid notes found in scale and range.")
+        return null
+
+    var chosen_pitch : int = valid_pitches[randi() % valid_pitches.size()]
+    return Note.new(chosen_pitch, time)
+
+static func _letter_to_pitch_class(letter : Letter) -> int:
+    match letter:
+        Letter.C: return 0
+        Letter.D: return 2
+        Letter.E: return 4
+        Letter.F: return 5
+        Letter.G: return 7
+        Letter.A: return 9
+        Letter.B: return 11
+    return 0
 
 func _to_string() -> String:
     var accidental_str : String

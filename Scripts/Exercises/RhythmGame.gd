@@ -28,10 +28,20 @@ func _process(delta : float) -> void:
         live_notes[0].miss.emit()
         live_notes.remove_at(0)
 
+func next_step():
+    note_spawn_timer = 0
+    _spawn_random_note()
+
 func _spawn_random_note():
-    var pitch := _get_random_pitch()
-    live_notes.append(Note.new(pitch, START_TIME))
-    last_pitch = pitch
+    var note : Note
+    while true:
+        note = exercise_controller.create_note_in_scale()
+        note.time = START_TIME
+        if note.pitch != last_pitch:
+            break
+    
+    live_notes.append(note)
+    last_pitch = note.pitch
 
 func _get_random_pitch() -> int:
     if last_pitch == -1:
@@ -43,7 +53,3 @@ func _get_random_pitch() -> int:
         result = clamp(last_pitch + offset, exercise_controller.pitch_range[0], exercise_controller.pitch_range[1])
     
     return result
-
-func next_step():
-    note_spawn_timer = 0
-    _spawn_random_note()

@@ -21,13 +21,10 @@ func _add_config_options():
     add_separator("", 10)
     
     add_item("Note range", 11)
-    add_check_item("Accidentals", 12)
-    set_item_checked(get_item_index(12), true)
     
     add_separator("", 20)
     
-    add_check_item("Any octave", 21)
-    set_item_tooltip(get_item_index(21), "Play the displayed note in any octave")
+    add_check_item("Scale", 21)
     
     add_separator("", 30)
     
@@ -61,12 +58,8 @@ func _on_OptionsPanel_id_pressed(id):
             exercise_controller.add_child(note_range)
             note_range.visible = true
             exercise_controller.note_range_open = true
-        12:
-            exercise_controller.accidentals = not exercise_controller.accidentals
-            set_item_checked(idx, exercise_controller.accidentals)
         21:
-            exercise_controller.any_octave = not exercise_controller.any_octave
-            set_item_checked(idx, exercise_controller.any_octave)
+            pass
         50:
             OS.open_midi_inputs()
             hide()
