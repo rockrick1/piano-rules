@@ -4,6 +4,8 @@
 [ext_resource type="FontFile" path="res://Assets/Fonts/Simple.tres" id="2"]
 
 [node name="Control" type="AcceptDialog" unique_id=2086538381 node_paths=PackedStringArray("start_label", "end_label")]
+title = "Note range"
+position = Vector2i(200, 200)
 script = ExtResource("1")
 start_label = NodePath("Buttons/Start/Label")
 end_label = NodePath("Buttons/End/Label")

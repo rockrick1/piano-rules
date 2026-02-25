@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bb35qd1o6v85w" path="res://Scripts/UI/OptionsPanel.gd" id="1"]
 [ext_resource type="FontFile" path="res://Assets/Fonts/Simple.tres" id="2"]
 [ext_resource type="FontFile" uid="uid://bksggk1e6s5j4" path="res://Assets/Fonts/Rubik-VariableFont_wght.ttf" id="3"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/NoteRange.tscn" id="4_3b5jw"]
+[ext_resource type="PackedScene" uid="uid://cv3po1ib02wk" path="res://Scenes/UI/NoteRange.tscn" id="4_3b5jw"]
 
 [sub_resource type="FontFile" id="2"]
 fallbacks = Array[Font]([ExtResource("3"), ExtResource("3")])
@@ -24,6 +24,11 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
 
 [sub_resource type="Theme" id="1"]
 default_font = SubResource("2")

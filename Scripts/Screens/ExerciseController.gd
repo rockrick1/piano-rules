@@ -5,7 +5,7 @@ extends Control
 @export var exercise_parent : Node
 @export var note_scene : PackedScene
 @export var note_group : Node
-@export var options_panel : Node
+@export var options_panel : PopupMenu
 @export var assist : Node
 @export var hard_assist : Node
 @export var complements : Node
@@ -14,7 +14,6 @@ extends Control
 @export var anchor_77 : Node2D
 @export var anchor_60 : Node2D
 
-var note_range_open := false
 var assist_mode := false
 var hard_assist_mode := false
 var pitch_range : Array[int] = [60,87]
@@ -70,7 +69,7 @@ func _on_NextStep_pressed():
     current_exercise.next_step()
 
 func _on_Configs_pressed():
-    options_panel.visible = not options_panel.visible
+    options_panel.show()
 
 func _update_notes():
     var live_note_count := len(current_exercise.live_notes)

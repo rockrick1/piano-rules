@@ -3,6 +3,7 @@ extends PopupMenu
 @export var note_range_scene : PackedScene
 
 var exercise_controller : ExerciseController
+var note_range_instance : Window = null
 
 var is_mouse_inside : bool = false
 
@@ -51,13 +52,13 @@ func _on_OptionsPanel_id_pressed(id):
             set_item_checked(idx, exercise_controller.hard_assist_mode)
             set_item_checked(assist_idx, exercise_controller.assist_mode)
         11:
-            if exercise_controller.note_range_open:
+            if note_range_instance != null:
+                note_range_instance.show()
                 return
-            var note_range : NoteRange = note_range_scene.instantiate()
-            note_range.init(exercise_controller)
-            exercise_controller.add_child(note_range)
-            note_range.visible = true
-            exercise_controller.note_range_open = true
+            note_range_instance = note_range_scene.instantiate()
+            note_range_instance.init(exercise_controller)
+            exercise_controller.add_child(note_range_instance)
+            note_range_instance.show()
         21:
             pass
         50:

@@ -53,7 +53,6 @@ func _set_line_pos(line, note : Note):
     exercise_controller.complements.get_node(line+"Line").set_position(pos)
 
 func _on_Control_confirmed():
-    exercise_controller.note_range_open = false
     exercise_controller.complements.get_node("TopLine").hide()
     exercise_controller.complements.get_node("BotLine").hide()
-    queue_free()
+    hide()
