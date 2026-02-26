@@ -1,2 +1,2 @@
 class_name Signatures
-extends Control
+extends OptionsSubPanel

@@ -5,7 +5,6 @@ extends Control
 @export var exercise_parent : Node
 @export var note_scene : PackedScene
 @export var note_group : Node
-@export var options_panel : Control
 @export var assist : Node
 @export var hard_assist : Node
 @export var complements : Node
@@ -13,6 +12,11 @@ extends Control
 @export var max_combo_label : Label
 @export var anchor_77 : Node2D
 @export var anchor_60 : Node2D
+@export var top_line : Line2D
+@export var bot_line : Line2D
+
+@export var options_panel : Control
+@export var note_range : NoteRange
 
 var tone_offset : float
 var current_exercise : Exercise
@@ -26,11 +30,15 @@ func _ready():
     
     assist.visible = false
     hard_assist.visible = false
-    complements.get_node("TopLine").hide()
-    complements.get_node("BotLine").hide()
+    top_line.hide()
+    bot_line.hide()
     
     tone_offset = anchor_77.position.y - anchor_60.position.y
     tone_offset /= 10
+    
+    note_range.enabled.connect(_on_note_range_enabled)
+    note_range.disabled.connect(_on_note_range_disabled)
+    note_range.range_changed.connect(_on_note_range_changed)
 
 func _process(_delta: float) -> void:
     _update_notes()
@@ -91,3 +99,17 @@ func _update_notes():
 func _update_combo():
     combo_label.set_text("Combo: " + str(current_exercise.combo))
     max_combo_label.set_text("Max: " + str(current_exercise.max_combo))
+
+func _on_note_range_enabled():
+    top_line.show()
+    bot_line.show()
+
+func _on_note_range_disabled():
+    top_line.hide()
+    bot_line.hide()
+
+func _on_note_range_changed():
+    var top_pos := Vector2(1024/2, get_note_position(Note.new(ExerciseContext.pitch_range[1])).y)
+    top_line.set_position(top_pos)
+    var bot_pos := Vector2(1024/2, get_note_position(Note.new(ExerciseContext.pitch_range[0])).y)
+    bot_line.set_position(bot_pos)

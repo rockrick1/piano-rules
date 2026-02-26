@@ -28,7 +28,7 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 
-[node name="ExerciseView" type="Control" unique_id=1264331475 node_paths=PackedStringArray("input_reader", "exercise_parent", "note_group", "options_panel", "assist", "hard_assist", "complements", "combo_label", "max_combo_label", "anchor_77", "anchor_60")]
+[node name="ExerciseView" type="Control" unique_id=1264331475 node_paths=PackedStringArray("input_reader", "exercise_parent", "note_group", "options_panel", "assist", "hard_assist", "complements", "combo_label", "max_combo_label", "anchor_77", "anchor_60", "top_line", "bot_line", "note_range")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,6 +48,9 @@ combo_label = NodePath("MarginContainer/Combos/Combo")
 max_combo_label = NodePath("MarginContainer/Combos/MaxCombo")
 anchor_77 = NodePath("MarginContainer/TextureRect/Anchor77")
 anchor_60 = NodePath("MarginContainer/TextureRect/Anchor60")
+top_line = NodePath("MarginContainer/TextureRect/Complements/TopLine")
+bot_line = NodePath("MarginContainer/TextureRect/Complements/BotLine")
+note_range = NodePath("OptionsPanel/MarginContainer/NoteRange")
 
 [node name="Exercises" type="Node" parent="." unique_id=966647934]
 
@@ -514,3 +517,11 @@ layout_mode = 1
 
 [connection signal="pressed" from="MarginContainer/Buttons/NextStep" to="." method="_on_NextStep_pressed"]
 [connection signal="pressed" from="MarginContainer/Buttons/Configs" to="." method="_on_Configs_pressed"]
+
+[editable path="OptionsPanel"]
+[editable path="OptionsPanel/MarginContainer/Options/Range"]
+[editable path="OptionsPanel/MarginContainer/Options/Signatures"]
+[editable path="OptionsPanel/MarginContainer/Options/AssistMode"]
+[editable path="OptionsPanel/MarginContainer/Options/HardAssistMode"]
+[editable path="OptionsPanel/MarginContainer/Options/RefreshMidi"]
+[editable path="OptionsPanel/MarginContainer/Options/Quit"]

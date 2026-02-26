@@ -1,14 +1,14 @@
 extends Control
 
-@export var note_range : Control
-@export var signatures : Control
+@export var note_range : NoteRange
+@export var signatures : Signatures
 @export var options_container : Control
 
 @export var assist_toggle : CheckButton
 @export var hard_assist_toggle : CheckButton
 
 var exercise_controller : ExerciseController
-var open_subscreen : Control
+var open_sub_panel : OptionsSubPanel
 
 func _ready() -> void:
     hide()
@@ -17,9 +17,9 @@ func _ready() -> void:
     signatures.hide()
 
 func _on_close_pressed() -> void:
-    if open_subscreen != null:
-        open_subscreen.hide()
-        open_subscreen = null
+    if open_sub_panel != null:
+        open_sub_panel.disable()
+        open_sub_panel = null
         options_container.show()
         return
     
@@ -27,13 +27,13 @@ func _on_close_pressed() -> void:
 
 func _on_range_pressed() -> void:
     options_container.hide()
-    note_range.show()
-    open_subscreen = note_range
+    note_range.enable()
+    open_sub_panel = note_range
 
 func _on_signatures_pressed() -> void:
     options_container.hide()
-    signatures.show()
-    open_subscreen = signatures
+    signatures.enable()
+    open_sub_panel = signatures
 
 func _on_assist_toggled(toggled_on: bool) -> void:
     exercise_controller.set_assist_mode_active(toggled_on)
