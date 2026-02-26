@@ -5,7 +5,7 @@ extends Control
 @export var exercise_parent : Node
 @export var note_scene : PackedScene
 @export var note_group : Node
-@export var options_panel : PopupMenu
+@export var options_panel : Control
 @export var assist : Node
 @export var hard_assist : Node
 @export var complements : Node
@@ -14,12 +14,6 @@ extends Control
 @export var anchor_77 : Node2D
 @export var anchor_60 : Node2D
 
-var assist_mode := false
-var hard_assist_mode := false
-var pitch_range : Array[int] = [60,87]
-var scale_type : Scale.Type = Scale.Type.MAJOR
-var scale_letter : Note.Letter
-var scale_accidental : Note.Accidental
 var tone_offset : float
 var current_exercise : Exercise
 var note_views : Array[NoteView]
@@ -58,12 +52,18 @@ func get_note_position(note : Note) -> Vector2:
 
 func create_note_in_scale() -> Note:
     return Note.create_in_scale(
-        scale_letter,
-        scale_accidental,
-        scale_type,
-        pitch_range[0],
-        pitch_range[1],
+        ExerciseContext.scale_letter,
+        ExerciseContext.scale_accidental,
+        ExerciseContext.scale_type,
+        ExerciseContext.pitch_range[0],
+        ExerciseContext.pitch_range[1],
     )
+
+func set_assist_mode_active(active: bool) -> void:
+    assist.visible = active
+
+func set_hard_assist_mode_active(active: bool) -> void:
+    hard_assist.visible = active
 
 func _on_NextStep_pressed():
     current_exercise.next_step()

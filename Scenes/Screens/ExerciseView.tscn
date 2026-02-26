@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bdbw66fuf4qs3" path="res://Assets/cleff.png" id="4_cawue"]
 [ext_resource type="FontFile" uid="uid://bksggk1e6s5j4" path="res://Assets/Fonts/Rubik-VariableFont_wght.ttf" id="5_3wg1m"]
 [ext_resource type="FontFile" path="res://Assets/Fonts/Simple.tres" id="6_q8fq5"]
-[ext_resource type="PackedScene" uid="uid://d2g6lvci0wvig" path="res://Scenes/UI/OptionsPanel.tscn" id="7_kk81c"]
+[ext_resource type="PackedScene" uid="uid://7yb6mv40kovg" path="res://Scenes/UI/OptionsPanel.tscn" id="7_kk81c"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("5_3wg1m")])
@@ -40,12 +40,12 @@ input_reader = NodePath("InputReader")
 exercise_parent = NodePath("Exercises")
 note_scene = ExtResource("2_gbpb2")
 note_group = NodePath("MarginContainer/TextureRect/Notes")
-options_panel = NodePath("MarginContainer/Buttons/Configs/OptionsPanel")
+options_panel = NodePath("OptionsPanel")
 assist = NodePath("MarginContainer/TextureRect/Assist")
 hard_assist = NodePath("MarginContainer/TextureRect/HardAssist")
 complements = NodePath("MarginContainer/TextureRect/Complements")
-combo_label = NodePath("MarginContainer/Buttons/Combos/Combo")
-max_combo_label = NodePath("MarginContainer/Buttons/Combos/MaxCombo")
+combo_label = NodePath("MarginContainer/Combos/Combo")
+max_combo_label = NodePath("MarginContainer/Combos/MaxCombo")
 anchor_77 = NodePath("MarginContainer/TextureRect/Anchor77")
 anchor_60 = NodePath("MarginContainer/TextureRect/Anchor60")
 
@@ -467,15 +467,11 @@ position = Vector2(288, 312.5086)
 
 [node name="Notes" type="Node2D" parent="MarginContainer/TextureRect" unique_id=2007476199]
 
-[node name="Buttons" type="VBoxContainer" parent="MarginContainer" unique_id=188200827]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="Combos" type="HBoxContainer" parent="MarginContainer/Buttons" unique_id=1733290134]
+[node name="Combos" type="HBoxContainer" parent="MarginContainer" unique_id=1733290134]
 layout_mode = 2
 alignment = 1
 
-[node name="Combo" type="Label" parent="MarginContainer/Buttons/Combos" unique_id=1237044353]
+[node name="Combo" type="Label" parent="MarginContainer/Combos" unique_id=1237044353]
 layout_mode = 2
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.98
@@ -484,7 +480,7 @@ text = "Combo: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MaxCombo" type="Label" parent="MarginContainer/Buttons/Combos" unique_id=2010600666]
+[node name="MaxCombo" type="Label" parent="MarginContainer/Combos" unique_id=2010600666]
 layout_mode = 2
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.98
@@ -492,6 +488,11 @@ theme_override_fonts/font = ExtResource("6_q8fq5")
 text = "Combo: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer" unique_id=188200827]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="NextStep" type="Button" parent="MarginContainer/Buttons" unique_id=418728783]
 layout_mode = 2
@@ -508,7 +509,8 @@ size_flags_stretch_ratio = 0.35
 theme_override_fonts/font = ExtResource("6_q8fq5")
 text = "Options"
 
-[node name="OptionsPanel" parent="MarginContainer/Buttons/Configs" unique_id=2029911146 instance=ExtResource("7_kk81c")]
+[node name="OptionsPanel" parent="." unique_id=2029911146 instance=ExtResource("7_kk81c")]
+layout_mode = 1
 
 [connection signal="pressed" from="MarginContainer/Buttons/NextStep" to="." method="_on_NextStep_pressed"]
 [connection signal="pressed" from="MarginContainer/Buttons/Configs" to="." method="_on_Configs_pressed"]

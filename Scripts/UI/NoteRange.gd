@@ -1,5 +1,5 @@
 class_name NoteRange
-extends AcceptDialog
+extends Control
 
 @export var start_label : Control
 @export var end_label : Control

@@ -1,76 +1,55 @@
-extends PopupMenu
+extends Control
 
-@export var note_range_scene : PackedScene
+@export var note_range : Control
+@export var signatures : Control
+@export var options_container : Control
+
+@export var assist_toggle : CheckButton
+@export var hard_assist_toggle : CheckButton
 
 var exercise_controller : ExerciseController
-var note_range_instance : Window = null
+var open_subscreen : Control
 
-var is_mouse_inside : bool = false
+func _ready() -> void:
+    hide()
+    options_container.show()
+    note_range.hide()
+    signatures.hide()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    _add_config_options()
-
-func _input(event):
-    if Input.is_action_pressed("left_mouse") and not is_mouse_inside:
-        hide()
-
-func _add_config_options():
-    add_radio_check_item("Assist mode", 1)
-    add_radio_check_item("Hard assist mode", 2)
+func _on_close_pressed() -> void:
+    if open_subscreen != null:
+        open_subscreen.hide()
+        open_subscreen = null
+        options_container.show()
+        return
     
-    add_separator("", 10)
-    
-    add_item("Note range", 11)
-    
-    add_separator("", 20)
-    
-    add_check_item("Scale", 21)
-    
-    add_separator("", 30)
-    
-    add_item("Refresh MIDI inputs", 50)
-    add_item("Quit", 100)
+    hide()
 
-func _on_OptionsPanel_id_pressed(id):
-    var idx = get_item_index(id)
-    match id:
-        1:
-            exercise_controller.assist_mode = not exercise_controller.assist_mode
-            exercise_controller.hard_assist_mode = false
-            exercise_controller.assist.visible = exercise_controller.assist_mode
-            exercise_controller.hard_assist.visible = exercise_controller.hard_assist_mode
-            var hard_assist_idx = get_item_index(2)
-            set_item_checked(idx, exercise_controller.assist_mode)
-            set_item_checked(hard_assist_idx, exercise_controller.hard_assist_mode)
-        2:
-            exercise_controller.hard_assist_mode = not exercise_controller.hard_assist_mode
-            exercise_controller.assist_mode = false
-            exercise_controller.assist.visible = exercise_controller.assist_mode
-            exercise_controller.hard_assist.visible = exercise_controller.hard_assist_mode
-            var assist_idx = get_item_index(1)
-            set_item_checked(idx, exercise_controller.hard_assist_mode)
-            set_item_checked(assist_idx, exercise_controller.assist_mode)
-        11:
-            if note_range_instance != null:
-                note_range_instance.show()
-                return
-            note_range_instance = note_range_scene.instantiate()
-            note_range_instance.init(exercise_controller)
-            exercise_controller.add_child(note_range_instance)
-            note_range_instance.show()
-        21:
-            pass
-        50:
-            OS.open_midi_inputs()
-            hide()
-        100:
-            get_tree().change_scene_to_file("res://Scenes/Screens/MainMenu.tscn")
-            # TODO this shouldnt be needed
-            get_tree().root.get_node("ExerciseView").queue_free()
+func _on_range_pressed() -> void:
+    options_container.hide()
+    note_range.show()
+    open_subscreen = note_range
 
-func _on_OptionsPanel_mouse_entered():
-    is_mouse_inside = true
+func _on_signatures_pressed() -> void:
+    options_container.hide()
+    signatures.show()
+    open_subscreen = signatures
 
-func _on_OptionsPanel_mouse_exited():
-    is_mouse_inside = false
+func _on_assist_toggled(toggled_on: bool) -> void:
+    exercise_controller.set_assist_mode_active(toggled_on)
+    #TODO these are bugged i dont fucking know why
+    #if toggled_on:
+        #hard_assist_toggle.toggle_mode = false
+
+func _on_hard_assist_toggled(toggled_on: bool) -> void:
+    exercise_controller.set_hard_assist_mode_active(toggled_on)
+    #if toggled_on:
+        #assist_toggle.toggle_mode = false
+
+func _on_refresh_midi_pressed() -> void:
+    OS.open_midi_inputs()
+
+func _on_quit_pressed() -> void:
+    get_tree().change_scene_to_file("res://Scenes/Screens/MainMenu.tscn")
+    # TODO this shouldnt be needed
+    get_tree().root.get_node("ExerciseView").queue_free()

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dibkxd24oe2f5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1evh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="ButtonOptionEntry" type="PanelContainer" unique_id=2036325919]
+
+[node name="LabelContainer" type="MarginContainer" parent="." unique_id=2073621075]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="LabelContainer" unique_id=208268336]
+layout_mode = 2
+text = "Range"
+
+[node name="Button" type="Button" parent="." unique_id=1668882059]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_x1evh")
