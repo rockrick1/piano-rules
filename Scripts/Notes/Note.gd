@@ -124,4 +124,4 @@ func _to_string() -> String:
             accidental_str = "#"
         _:
             accidental_str = ""
-    return str(octave) + str(letter) + accidental_str
+    return str(octave) + Letter.keys()[letter] + accidental_str

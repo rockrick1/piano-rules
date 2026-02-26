@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://b6tasgl843yv3" path="res://Assets/UI/UpArrowAtlasTexture.tres" id="7_knjjy"]
 [ext_resource type="Texture2D" uid="uid://c020py2fddt3f" path="res://Assets/UI/DownArrowAtlasTexture.tres" id="8_5gkv1"]
 [ext_resource type="Texture2D" uid="uid://ser4v1k4nxpe" path="res://Assets/UI/CloseButtonAtlasTexture.tres" id="8_as4mu"]
+[ext_resource type="PackedScene" uid="uid://byifvjqth6q65" path="res://Scenes/UI/SignatureButton.tscn" id="10_13ixf"]
 
 [sub_resource type="FontFile" id="2"]
 fallbacks = Array[Font]([ExtResource("3"), ExtResource("3")])
@@ -227,9 +228,11 @@ grow_vertical = 2
 texture = ExtResource("8_5gkv1")
 stretch_mode = 3
 
-[node name="Signatures" type="Control" parent="MarginContainer" unique_id=771570699]
+[node name="Signatures" type="Control" parent="MarginContainer" unique_id=771570699 node_paths=PackedStringArray("grid_container")]
 layout_mode = 2
 script = ExtResource("7_as4mu")
+grid_container = NodePath("GridContainer")
+button_scene = ExtResource("10_13ixf")
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/Signatures" unique_id=2037403453]
 layout_mode = 1
@@ -242,76 +245,6 @@ offset_bottom = 13.5
 grow_horizontal = 2
 grow_vertical = 2
 columns = 2
-
-[node name="Button5" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=539666385]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
-
-[node name="Button6" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=2035457675]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
-
-[node name="Button7" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=1123519089]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
-
-[node name="Button8" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=1042530746]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
-
-[node name="Button9" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=1493472831]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
-
-[node name="Button10" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=1823641228]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
-
-[node name="Button11" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=1246011545]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
-
-[node name="Button12" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=606615569]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
-
-[node name="Button13" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=834802803]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
-
-[node name="Button14" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=1715533843]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
-
-[node name="Button15" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=94921673]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
-
-[node name="Button16" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=1160793085]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
-
-[node name="Button17" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=1144014038]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
-
-[node name="Button18" type="Button" parent="MarginContainer/Signatures/GridContainer" unique_id=1517628997]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "C# Major"
 
 [node name="CloseButton" type="CenterContainer" parent="MarginContainer" unique_id=281053774]
 layout_mode = 2
