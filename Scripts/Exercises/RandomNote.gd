@@ -36,13 +36,11 @@ func next_step():
 
 # generates a random pitch value, different from the last
 func _spawn_random_note():
-    var pitch := last_pitch
-    var note := Note.new(pitch)
-    # if accidentals are disabled, keep generating a new note until it doesn't have one
+    var note := Note.new(last_pitch)
     while true:
-        note = exercise_controller.create_note_in_scale()
+        note = create_note_in_scale()
         if note.pitch != last_pitch:
             break
     
     live_notes.append(note)
-    last_pitch = pitch
+    last_pitch = note.pitch

@@ -96,6 +96,7 @@ _data = {
 }
 
 [node name="Note" type="Node2D" unique_id=1349560790]
+material = ExtResource("5")
 scale = Vector2(0.09, 0.09)
 script = ExtResource("4")
 

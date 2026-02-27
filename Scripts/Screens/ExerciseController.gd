@@ -58,15 +58,6 @@ func get_note_position(note : Note) -> Vector2:
     var pos := anchor_60.position + Vector2(x_pos, y_pos)
     return pos
 
-func create_note_in_scale() -> Note:
-    return Note.create_in_scale(
-        ExerciseContext.scale_letter,
-        ExerciseContext.scale_accidental,
-        ExerciseContext.scale_type,
-        ExerciseContext.pitch_range[0],
-        ExerciseContext.pitch_range[1],
-    )
-
 func set_assist_mode_active(active: bool) -> void:
     assist.visible = active
 

@@ -15,6 +15,15 @@ func setup(input_reader : InputReader, exercise_controller : ExerciseController)
 func next_step():
     pass
 
+func create_note_in_scale() -> Note:
+    return Note.create_in_scale(
+        ExerciseContext.scale_letter,
+        ExerciseContext.scale_accidental,
+        ExerciseContext.scale_type,
+        ExerciseContext.pitch_range[0],
+        ExerciseContext.pitch_range[1]
+    )
+
 func _process(_delta) -> void:
     input_reader.just_pressed.clear()
     input_reader.just_released.clear()
