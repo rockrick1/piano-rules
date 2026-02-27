@@ -25,7 +25,7 @@ func _process(delta : float) -> void:
     
     # kill missed notes
     while len(live_notes) > 0 && live_notes[0].time < -HIT_TIME_WINDOW * SPEED:
-        live_notes[0].miss.emit()
+        note_missed.emit(live_notes[0])
         live_notes.remove_at(0)
 
 func next_step():

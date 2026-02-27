@@ -46,7 +46,10 @@ func _process(_delta: float) -> void:
 
 func load_exercise(exercise_scene : PackedScene):
     var exercise_instance : Exercise = exercise_scene.instantiate()
-    exercise_instance.setup(input_reader, self)
+    exercise_instance.setup(input_reader)
+    exercise_instance.note_missed.connect(_on_note_missed)
+    exercise_instance.wrong_note_played.connect(_on_wrong_note_played)
+    exercise_instance.note_hit.connect(_on_note_hit)
     exercise_parent.add_child(exercise_instance)
     current_exercise = exercise_instance
 
@@ -104,3 +107,24 @@ func _on_note_range_changed():
     top_line.set_position(top_pos)
     var bot_pos := Vector2(1024/2, get_note_position(Note.new(ExerciseContext.pitch_range[0])).y)
     bot_line.set_position(bot_pos)
+
+func _on_note_missed(note: Note):
+    var note_placeholder : NoteView = note_scene.instantiate()
+    note_group.add_child(note_placeholder)
+    note_placeholder.position = get_note_position(note)
+    note_placeholder.play_miss()
+    pass
+
+func _on_wrong_note_played(note: Note):
+    var note_placeholder : NoteView = note_scene.instantiate()
+    note_group.add_child(note_placeholder)
+    note_placeholder.position = get_note_position(note)
+    note_placeholder.play_miss()
+    pass
+
+func _on_note_hit(note: Note):
+    var note_placeholder : NoteView = note_scene.instantiate()
+    note_group.add_child(note_placeholder)
+    note_placeholder.position = get_note_position(note)
+    note_placeholder.play_hit()
+    pass

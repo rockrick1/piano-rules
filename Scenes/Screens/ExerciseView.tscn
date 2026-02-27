@@ -28,7 +28,7 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 
-[node name="ExerciseView" type="Control" unique_id=1264331475 node_paths=PackedStringArray("input_reader", "exercise_parent", "note_group", "options_panel", "assist", "hard_assist", "complements", "combo_label", "max_combo_label", "anchor_77", "anchor_60", "top_line", "bot_line", "note_range")]
+[node name="ExerciseView" type="Control" unique_id=1264331475 node_paths=PackedStringArray("input_reader", "exercise_parent", "note_group", "assist", "hard_assist", "complements", "combo_label", "max_combo_label", "anchor_77", "anchor_60", "top_line", "bot_line", "options_panel", "note_range")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,7 +40,6 @@ input_reader = NodePath("InputReader")
 exercise_parent = NodePath("Exercises")
 note_scene = ExtResource("2_gbpb2")
 note_group = NodePath("MarginContainer/TextureRect/Notes")
-options_panel = NodePath("OptionsPanel")
 assist = NodePath("MarginContainer/TextureRect/Assist")
 hard_assist = NodePath("MarginContainer/TextureRect/HardAssist")
 complements = NodePath("MarginContainer/TextureRect/Complements")
@@ -50,6 +49,7 @@ anchor_77 = NodePath("MarginContainer/TextureRect/Anchor77")
 anchor_60 = NodePath("MarginContainer/TextureRect/Anchor60")
 top_line = NodePath("MarginContainer/TextureRect/Complements/TopLine")
 bot_line = NodePath("MarginContainer/TextureRect/Complements/BotLine")
+options_panel = NodePath("OptionsPanel")
 note_range = NodePath("OptionsPanel/MarginContainer/NoteRange")
 
 [node name="Exercises" type="Node" parent="." unique_id=966647934]

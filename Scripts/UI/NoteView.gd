@@ -7,18 +7,12 @@ extends Node2D
 
 var type := "semibreve"
 var note : Note = null
-var alive := true
 
 func _ready():
     mat.set_shader_parameter("strength", 0.0)
 
 func setup(note : Note):
-    if self.note != null:
-        self.note.hit.disconnect(_on_hit)
-        self.note.miss.disconnect(_on_miss)
     self.note = note
-    self.note.hit.connect(_on_hit)
-    self.note.miss.connect(_on_miss)
     match note.accidental:
         Note.Accidental.REGULAR:
             _regular()
@@ -27,21 +21,18 @@ func setup(note : Note):
         Note.Accidental.FLAT:
             _flat()
 
+func play_miss():
+    $AnimationPlayer.stop()
+    $AnimationPlayer.play("miss")
+
+func play_hit():
+    $AnimationPlayer.stop()
+    $AnimationPlayer.play("hit")
+
 func _process(delta):
     $NoteSprite.offset.x = shake_offset
     $FlatSprite.offset.x = shake_offset
     $SharpSprite.offset.x = shake_offset
-
-func _on_miss():
-    $AnimationPlayer.stop()
-    $AnimationPlayer.play("miss")
-
-func _on_hit():
-    if not alive:
-        return
-    alive = false
-    $AnimationPlayer.stop()
-    $AnimationPlayer.play("hit")
 
 func _sharp():
     $FlatSprite.set_visible(false)
