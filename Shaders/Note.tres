@@ -6,20 +6,27 @@ render_mode unshaded;
 
 uniform vec4 u_color_key : source_color;
 uniform vec4 u_replacement_color : source_color;
-uniform float strength : float;
+uniform float strength : hint_range(0.0, 1.0) = 1.0;
+uniform float alpha : hint_range(0.0, 1.0) = 1.0;
 
 void fragment() {
     vec4 col = texture(TEXTURE, UV);
-    vec4 d4 = abs(col - u_color_key);
-    float d = max(max(d4.r, d4.g), d4.b);
-    if(d < 0.01 && col.a > 0.0) {
-        col.r = u_replacement_color.r * strength;
-        col.g = u_replacement_color.g * strength;
-        col.b = u_replacement_color.b * strength;
+
+    vec3 diff = abs(col.rgb - u_color_key.rgb);
+    float d = max(max(diff.r, diff.g), diff.b);
+
+    if (d < 0.01 && col.a > 0.0) {
+        col.rgb = u_replacement_color.rgb * strength;
+        col.a = alpha;
     }
+
     COLOR = col;
 }"
 
 [resource]
 resource_local_to_scene = true
 shader = SubResource("1")
+shader_parameter/u_color_key = Color(0, 0, 0, 1)
+shader_parameter/u_replacement_color = Color(0.47106838, 0.7681926, 0, 1)
+shader_parameter/strength = 1.0
+shader_parameter/alpha = 1.0
