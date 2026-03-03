@@ -46,6 +46,9 @@ func _on_hard_assist_toggled(toggled_on: bool) -> void:
     #if toggled_on:
         #assist_toggle.toggle_mode = false
 
+func _on_simultaneous_notes_changed(value: float) -> void:
+    ExerciseContext.simultaneous_notes = int(value)
+
 func _on_refresh_midi_pressed() -> void:
     OS.open_midi_inputs()
 

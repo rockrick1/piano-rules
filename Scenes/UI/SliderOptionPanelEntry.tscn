@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://brgaw2yj751gv"]
+
+[ext_resource type="Script" uid="uid://5j6nr0nhbvxb" path="res://Scripts/UI/SliderOptionEntry.gd" id="1_cj603"]
+
+[sub_resource type="Theme" id="Theme_x1evh"]
+
+[node name="SliderOptionEntry" type="PanelContainer" unique_id=1369178936 node_paths=PackedStringArray("slider", "value_label")]
+script = ExtResource("1_cj603")
+slider = NodePath("MarginContainer/HBoxContainer/HSlider")
+value_label = NodePath("MarginContainer/HBoxContainer/NumberLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1557957416]
+layout_mode = 2
+theme = SubResource("Theme_x1evh")
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=108222582]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=210892151]
+layout_mode = 2
+text = "asdasdasd"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer" unique_id=2033379238]
+custom_minimum_size = Vector2(85.79, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+tooltip_text = "
+"
+min_value = 1.0
+max_value = 5.0
+value = 1.0
+ticks_position = 3
+
+[node name="NumberLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1346163528]
+custom_minimum_size = Vector2(20.35, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "1"
+horizontal_alignment = 1

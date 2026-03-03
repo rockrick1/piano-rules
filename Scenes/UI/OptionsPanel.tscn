@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://bksggk1e6s5j4" path="res://Assets/Fonts/Rubik-VariableFont_wght.ttf" id="3"]
 [ext_resource type="PackedScene" uid="uid://dibkxd24oe2f5" path="res://Scenes/UI/ButtonOptionPanelEntry.tscn" id="4_dt4g3"]
 [ext_resource type="PackedScene" uid="uid://buyj2d7pqlinj" path="res://Scenes/UI/ToggleOptionPanelEntry.tscn" id="5_as4mu"]
+[ext_resource type="PackedScene" uid="uid://brgaw2yj751gv" path="res://Scenes/UI/SliderOptionPanelEntry.tscn" id="5_myspe"]
 [ext_resource type="Script" uid="uid://e1vkwxw1f8b3" path="res://Scripts/UI/NoteRange.gd" id="6_knjjy"]
 [ext_resource type="Script" uid="uid://bpev5qt5358kn" path="res://Scripts/UI/Signatures.gd" id="7_as4mu"]
 [ext_resource type="Texture2D" uid="uid://b6tasgl843yv3" path="res://Assets/UI/UpArrowAtlasTexture.tres" id="7_knjjy"]
@@ -47,10 +48,10 @@ content_margin_right = 0.0
 content_margin_bottom = 0.0
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.85490197)
 
-[node name="OptionsPanel" type="Panel" unique_id=1645371510 node_paths=PackedStringArray("note_range", "signatures", "options_container", "assist_toggle", "hard_assist_toggle")]
+[node name="OptionsPanel" type="PanelContainer" unique_id=704607973 node_paths=PackedStringArray("note_range", "signatures", "options_container", "assist_toggle", "hard_assist_toggle")]
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 198.0
+offset_right = 291.0
 grow_vertical = 2
 theme = SubResource("1")
 theme_override_styles/panel = SubResource("StyleBoxFlat_l1wua")
@@ -62,19 +63,13 @@ assist_toggle = NodePath("MarginContainer/Options/AssistMode/MarginContainer/HBo
 hard_assist_toggle = NodePath("MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer/Toggle")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1173121445]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="Options" type="VBoxContainer" parent="MarginContainer" unique_id=1273764164]
-visible = false
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
@@ -99,6 +94,12 @@ layout_mode = 2
 
 [node name="Label" parent="MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(794156671, 108222582) index="0" unique_id=210892151]
 text = "Hard Assist Mode"
+
+[node name="SimultaneousNotesOptionEntry" parent="MarginContainer/Options" unique_id=810741091 instance=ExtResource("5_myspe")]
+layout_mode = 2
+
+[node name="Label" parent="MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(810741091, 108222582) index="0" unique_id=210892151]
+text = "Simultaneous Notes"
 
 [node name="RefreshMidi" parent="MarginContainer/Options" unique_id=2034841440 instance=ExtResource("4_dt4g3")]
 layout_mode = 2
@@ -258,12 +259,11 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 icon = ExtResource("8_as4mu")
 
-[connection signal="mouse_entered" from="." to="." method="_on_OptionsPanel_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_OptionsPanel_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/Options/Range/Button" to="." method="_on_range_pressed"]
 [connection signal="pressed" from="MarginContainer/Options/Signatures/Button" to="." method="_on_signatures_pressed"]
 [connection signal="toggled" from="MarginContainer/Options/AssistMode/MarginContainer/HBoxContainer/Toggle" to="." method="_on_assist_toggled"]
 [connection signal="toggled" from="MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer/Toggle" to="." method="_on_hard_assist_toggled"]
+[connection signal="value_changed" from="MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer/HSlider" to="." method="_on_simultaneous_notes_changed"]
 [connection signal="pressed" from="MarginContainer/Options/RefreshMidi/Button" to="." method="_on_refresh_midi_pressed"]
 [connection signal="pressed" from="MarginContainer/Options/Quit/Button" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="MarginContainer/NoteRange/Buttons/Start/Up" to="MarginContainer/NoteRange" method="_on_start_up_pressed"]
@@ -276,5 +276,6 @@ icon = ExtResource("8_as4mu")
 [editable path="MarginContainer/Options/Signatures"]
 [editable path="MarginContainer/Options/AssistMode"]
 [editable path="MarginContainer/Options/HardAssistMode"]
+[editable path="MarginContainer/Options/SimultaneousNotesOptionEntry"]
 [editable path="MarginContainer/Options/RefreshMidi"]
 [editable path="MarginContainer/Options/Quit"]
