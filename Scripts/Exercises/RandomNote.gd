@@ -15,7 +15,6 @@ func _process(_delta) -> void:
     if len(get_just_pressed_keys()) == 0:
         return
     
-    
     var pitch = get_just_pressed_keys()[0]
     var required_note := live_notes[0]
     var pressed_note := Note.new(pitch)
@@ -40,11 +39,12 @@ func next_step():
 
 # generates a random pitch value, different from the last
 func _spawn_random_note():
-    var note := Note.new(last_pitch)
+    var note : Note
     while true:
         note = create_note_in_scale()
         if note.pitch != last_pitch:
             break
     
+    note.time = note.pitch - 65
     live_notes.append(note)
     last_pitch = note.pitch

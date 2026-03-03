@@ -2,7 +2,5 @@
 
 [ext_resource type="Script" uid="uid://csuwwoenvx88p" path="res://Scripts/Exercises/RandomNote.gd" id="1_mqjq4"]
 
-[node name="RandomNote" type="Node" unique_id=1785594417 node_paths=PackedStringArray("input_reader", "exercise_controller")]
+[node name="RandomNote" type="Node" unique_id=1785594417]
 script = ExtResource("1_mqjq4")
-input_reader = NodePath("")
-exercise_controller = NodePath("")
