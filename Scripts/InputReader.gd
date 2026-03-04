@@ -31,7 +31,6 @@ const MIDI_EVENT_PROPERTIES = ["channel", "message", "pitch", "velocity", "instr
 
 
 func get_midi_message_description(event : InputEventMIDI):
-
     if GlobalScope_MidiMessageList.values().has(event.message):
         return GlobalScope_MidiMessageList.keys()[event.message - 0x08]
     return event.message
@@ -42,7 +41,6 @@ const OCTAVE_KEY_INDEX = ["WhiteKey1", "BlackKey1", "WhiteKey2", "BlackKey2", "W
 
 func _unhandled_input(event : InputEvent):
     if (event is InputEventMIDI):
-
         var event_dump : String = ""
         var played_note : Note
         var props : Dictionary = {}
@@ -66,10 +64,11 @@ func _unhandled_input(event : InputEvent):
 
         match event.message:
             MIDI_MESSAGE_NOTE_ON:
-                currently_pressed[props.pitch] = props
-                just_pressed[props.pitch] = props
-                print(played_note)
+                if props.velocity == 0:
+                    currently_pressed.erase(props.pitch)
+                    just_released[props.pitch] = props
+                else:
+                    currently_pressed[props.pitch] = props
+                    just_pressed[props.pitch] = props
 
-            MIDI_MESSAGE_NOTE_OFF:
-                currently_pressed.erase(props.pitch)
-                just_released[props.pitch] = props
+#            MIDI_MESSAGE_NOTE_OFF:
