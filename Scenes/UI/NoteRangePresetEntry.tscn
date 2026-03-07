@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://l582tao0vbqw"]
+
+[node name="NoteRangePresetEntry" type="Button" unique_id=697138520]
+text = "Preset Name"

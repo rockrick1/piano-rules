@@ -25,6 +25,14 @@ func _on_close_pressed() -> void:
     
     hide()
 
+func _on_background_button_pressed() -> void:
+    if open_sub_panel != null:
+        open_sub_panel.disable()
+        open_sub_panel = null
+        options_container.show()
+        
+    hide()
+
 func _on_range_pressed() -> void:
     options_container.hide()
     note_range.enable()

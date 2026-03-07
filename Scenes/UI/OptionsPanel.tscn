@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://e1vkwxw1f8b3" path="res://Scripts/UI/NoteRange.gd" id="6_knjjy"]
 [ext_resource type="Script" uid="uid://bpev5qt5358kn" path="res://Scripts/UI/Signatures.gd" id="7_as4mu"]
 [ext_resource type="Texture2D" uid="uid://b6tasgl843yv3" path="res://Assets/UI/UpArrowAtlasTexture.tres" id="7_knjjy"]
+[ext_resource type="PackedScene" uid="uid://l582tao0vbqw" path="res://Scenes/UI/NoteRangePresetEntry.tscn" id="7_y0olo"]
 [ext_resource type="Texture2D" uid="uid://c020py2fddt3f" path="res://Assets/UI/DownArrowAtlasTexture.tres" id="8_5gkv1"]
 [ext_resource type="Texture2D" uid="uid://ser4v1k4nxpe" path="res://Assets/UI/CloseButtonAtlasTexture.tres" id="8_as4mu"]
 [ext_resource type="PackedScene" uid="uid://byifvjqth6q65" path="res://Scenes/UI/SignatureButton.tscn" id="10_13ixf"]
@@ -41,86 +42,101 @@ cache/0/14/0/scale = 1.0
 [sub_resource type="Theme" id="1"]
 default_font = SubResource("2")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1wua"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.85490197)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myspe"]
+bg_color = Color(0, 0, 0, 0.84313726)
 
-[node name="OptionsPanel" type="PanelContainer" unique_id=704607973 node_paths=PackedStringArray("note_range", "signatures", "options_container", "assist_toggle", "hard_assist_toggle")]
+[node name="OptionsPanel" type="Control" unique_id=1830347936 node_paths=PackedStringArray("note_range", "signatures", "options_container", "assist_toggle", "hard_assist_toggle")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("1")
+script = ExtResource("1")
+note_range = NodePath("PanelContainer/MarginContainer/NoteRange")
+signatures = NodePath("PanelContainer/MarginContainer/Signatures")
+options_container = NodePath("PanelContainer/MarginContainer/Options")
+assist_toggle = NodePath("PanelContainer/MarginContainer/Options/AssistMode/MarginContainer/HBoxContainer/Toggle")
+hard_assist_toggle = NodePath("PanelContainer/MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer/Toggle")
+
+[node name="BackgroundButton" type="Button" parent="." unique_id=2101663785]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=157125064]
+layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 291.0
 grow_vertical = 2
-theme = SubResource("1")
-theme_override_styles/panel = SubResource("StyleBoxFlat_l1wua")
-script = ExtResource("1")
-note_range = NodePath("MarginContainer/NoteRange")
-signatures = NodePath("MarginContainer/Signatures")
-options_container = NodePath("MarginContainer/Options")
-assist_toggle = NodePath("MarginContainer/Options/AssistMode/MarginContainer/HBoxContainer/Toggle")
-hard_assist_toggle = NodePath("MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer/Toggle")
+theme_override_styles/panel = SubResource("StyleBoxFlat_myspe")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1173121445]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1173121445]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Options" type="VBoxContainer" parent="MarginContainer" unique_id=1273764164]
+[node name="Options" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1273764164]
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Range" parent="MarginContainer/Options" unique_id=2036325919 instance=ExtResource("4_dt4g3")]
+[node name="Range" parent="PanelContainer/MarginContainer/Options" unique_id=2036325919 instance=ExtResource("4_dt4g3")]
 layout_mode = 2
 
-[node name="Signatures" parent="MarginContainer/Options" unique_id=922621493 instance=ExtResource("4_dt4g3")]
+[node name="Signatures" parent="PanelContainer/MarginContainer/Options" unique_id=922621493 instance=ExtResource("4_dt4g3")]
 layout_mode = 2
 
-[node name="Label" parent="MarginContainer/Options/Signatures/LabelContainer" parent_id_path=PackedInt32Array(922621493, 2073621075) index="0" unique_id=208268336]
+[node name="Label" parent="PanelContainer/MarginContainer/Options/Signatures/LabelContainer" parent_id_path=PackedInt32Array(922621493, 2073621075) index="0" unique_id=208268336]
 text = "Signatures"
 
-[node name="AssistMode" parent="MarginContainer/Options" unique_id=1369178936 instance=ExtResource("5_as4mu")]
+[node name="AssistMode" parent="PanelContainer/MarginContainer/Options" unique_id=1369178936 instance=ExtResource("5_as4mu")]
 layout_mode = 2
 
-[node name="Label" parent="MarginContainer/Options/AssistMode/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1369178936, 108222582) index="0" unique_id=210892151]
+[node name="Label" parent="PanelContainer/MarginContainer/Options/AssistMode/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1369178936, 108222582) index="0" unique_id=210892151]
 text = "Assist Mode"
 
-[node name="HardAssistMode" parent="MarginContainer/Options" unique_id=794156671 instance=ExtResource("5_as4mu")]
+[node name="HardAssistMode" parent="PanelContainer/MarginContainer/Options" unique_id=794156671 instance=ExtResource("5_as4mu")]
 layout_mode = 2
 
-[node name="Label" parent="MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(794156671, 108222582) index="0" unique_id=210892151]
+[node name="Label" parent="PanelContainer/MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(794156671, 108222582) index="0" unique_id=210892151]
 text = "Hard Assist Mode"
 
-[node name="SimultaneousNotesOptionEntry" parent="MarginContainer/Options" unique_id=810741091 instance=ExtResource("5_myspe")]
+[node name="SimultaneousNotesOptionEntry" parent="PanelContainer/MarginContainer/Options" unique_id=810741091 instance=ExtResource("5_myspe")]
 layout_mode = 2
 
-[node name="Label" parent="MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(810741091, 108222582) index="0" unique_id=210892151]
+[node name="Label" parent="PanelContainer/MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(810741091, 108222582) index="0" unique_id=210892151]
 text = "Simultaneous Notes"
 
-[node name="RefreshMidi" parent="MarginContainer/Options" unique_id=2034841440 instance=ExtResource("4_dt4g3")]
+[node name="RefreshMidi" parent="PanelContainer/MarginContainer/Options" unique_id=2034841440 instance=ExtResource("4_dt4g3")]
 layout_mode = 2
 
-[node name="Label" parent="MarginContainer/Options/RefreshMidi/LabelContainer" parent_id_path=PackedInt32Array(2034841440, 2073621075) index="0" unique_id=208268336]
+[node name="Label" parent="PanelContainer/MarginContainer/Options/RefreshMidi/LabelContainer" parent_id_path=PackedInt32Array(2034841440, 2073621075) index="0" unique_id=208268336]
 text = "Refresh MIDI"
 
-[node name="Quit" parent="MarginContainer/Options" unique_id=665444340 instance=ExtResource("4_dt4g3")]
+[node name="Quit" parent="PanelContainer/MarginContainer/Options" unique_id=665444340 instance=ExtResource("4_dt4g3")]
 layout_mode = 2
 
-[node name="Label" parent="MarginContainer/Options/Quit/LabelContainer" parent_id_path=PackedInt32Array(665444340, 2073621075) index="0" unique_id=208268336]
+[node name="Label" parent="PanelContainer/MarginContainer/Options/Quit/LabelContainer" parent_id_path=PackedInt32Array(665444340, 2073621075) index="0" unique_id=208268336]
 text = "Quit"
 
-[node name="NoteRange" type="Control" parent="MarginContainer" unique_id=445426249 node_paths=PackedStringArray("start_label", "end_label")]
-visible = false
+[node name="NoteRange" type="Control" parent="PanelContainer/MarginContainer" unique_id=445426249 node_paths=PackedStringArray("presets_container", "start_label", "end_label")]
 layout_mode = 2
 script = ExtResource("6_knjjy")
-start_label = NodePath("Buttons/Start/Label")
-end_label = NodePath("Buttons/End/Label")
+presets_container = NodePath("VBoxContainer/PresetEntries")
+preset_button_scene = ExtResource("7_y0olo")
+start_label = NodePath("VBoxContainer/Buttons/Start/Label")
+end_label = NodePath("VBoxContainer/Buttons/End/Label")
 
-[node name="Buttons" type="HBoxContainer" parent="MarginContainer/NoteRange" unique_id=1077804523]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/NoteRange" unique_id=1206989512]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -130,21 +146,37 @@ offset_top = -40.5
 offset_bottom = 40.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="PresetEntries" type="VBoxContainer" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer" unique_id=740202133]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer/PresetEntries" unique_id=1429164324]
+layout_mode = 2
+text = "Presets"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer" unique_id=208627944]
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer" unique_id=1077804523]
+layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="Start" type="VBoxContainer" parent="MarginContainer/NoteRange/Buttons" unique_id=1090138649]
+[node name="Start" type="VBoxContainer" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons" unique_id=1090138649]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Up" type="Button" parent="MarginContainer/NoteRange/Buttons/Start" unique_id=834884694]
+[node name="Up" type="Button" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/Start" unique_id=834884694]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/NoteRange/Buttons/Start/Up" unique_id=107426773]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/Start/Up" unique_id=107426773]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -155,20 +187,20 @@ grow_vertical = 2
 texture = ExtResource("7_knjjy")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="MarginContainer/NoteRange/Buttons/Start" unique_id=1673300428]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/Start" unique_id=1673300428]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("2")
 text = "35"
 horizontal_alignment = 1
 
-[node name="Down" type="Button" parent="MarginContainer/NoteRange/Buttons/Start" unique_id=1373977765]
+[node name="Down" type="Button" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/Start" unique_id=1373977765]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/NoteRange/Buttons/Start/Down" unique_id=1893370863]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/Start/Down" unique_id=1893370863]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -179,12 +211,12 @@ grow_vertical = 2
 texture = ExtResource("8_5gkv1")
 stretch_mode = 3
 
-[node name="End" type="VBoxContainer" parent="MarginContainer/NoteRange/Buttons" unique_id=1343087735]
+[node name="End" type="VBoxContainer" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons" unique_id=1343087735]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Up" type="Button" parent="MarginContainer/NoteRange/Buttons/End" unique_id=2072888410]
+[node name="Up" type="Button" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/End" unique_id=2072888410]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_vertical = 3
@@ -192,7 +224,7 @@ theme_override_fonts/font = ExtResource("2")
 text = "
 "
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/NoteRange/Buttons/End/Up" unique_id=435633584]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/End/Up" unique_id=435633584]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -203,14 +235,14 @@ grow_vertical = 2
 texture = ExtResource("7_knjjy")
 stretch_mode = 3
 
-[node name="Label" type="Label" parent="MarginContainer/NoteRange/Buttons/End" unique_id=908672241]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/End" unique_id=908672241]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("2")
 text = "35"
 horizontal_alignment = 1
 
-[node name="Down" type="Button" parent="MarginContainer/NoteRange/Buttons/End" unique_id=1267890011]
+[node name="Down" type="Button" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/End" unique_id=1267890011]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_vertical = 3
@@ -218,7 +250,7 @@ theme_override_fonts/font = ExtResource("2")
 text = "
 "
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/NoteRange/Buttons/End/Down" unique_id=1938221866]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/End/Down" unique_id=1938221866]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -229,13 +261,13 @@ grow_vertical = 2
 texture = ExtResource("8_5gkv1")
 stretch_mode = 3
 
-[node name="Signatures" type="Control" parent="MarginContainer" unique_id=771570699 node_paths=PackedStringArray("grid_container")]
+[node name="Signatures" type="Control" parent="PanelContainer/MarginContainer" unique_id=771570699 node_paths=PackedStringArray("grid_container")]
 layout_mode = 2
 script = ExtResource("7_as4mu")
 grid_container = NodePath("GridContainer")
 button_scene = ExtResource("10_13ixf")
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/Signatures" unique_id=2037403453]
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/Signatures" unique_id=2037403453]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -247,35 +279,36 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 2
 
-[node name="CloseButton" type="CenterContainer" parent="MarginContainer" unique_id=281053774]
+[node name="CloseButton" type="CenterContainer" parent="PanelContainer/MarginContainer" unique_id=281053774]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Button" type="Button" parent="MarginContainer/CloseButton" unique_id=1865828219]
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/CloseButton" unique_id=1865828219]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 icon = ExtResource("8_as4mu")
 
-[connection signal="pressed" from="MarginContainer/Options/Range/Button" to="." method="_on_range_pressed"]
-[connection signal="pressed" from="MarginContainer/Options/Signatures/Button" to="." method="_on_signatures_pressed"]
-[connection signal="toggled" from="MarginContainer/Options/AssistMode/MarginContainer/HBoxContainer/Toggle" to="." method="_on_assist_toggled"]
-[connection signal="toggled" from="MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer/Toggle" to="." method="_on_hard_assist_toggled"]
-[connection signal="value_changed" from="MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer/HSlider" to="." method="_on_simultaneous_notes_changed"]
-[connection signal="pressed" from="MarginContainer/Options/RefreshMidi/Button" to="." method="_on_refresh_midi_pressed"]
-[connection signal="pressed" from="MarginContainer/Options/Quit/Button" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="MarginContainer/NoteRange/Buttons/Start/Up" to="MarginContainer/NoteRange" method="_on_start_up_pressed"]
-[connection signal="pressed" from="MarginContainer/NoteRange/Buttons/Start/Down" to="MarginContainer/NoteRange" method="_on_start_down_pressed"]
-[connection signal="pressed" from="MarginContainer/NoteRange/Buttons/End/Up" to="MarginContainer/NoteRange" method="_on_end_up_pressed"]
-[connection signal="pressed" from="MarginContainer/NoteRange/Buttons/End/Down" to="MarginContainer/NoteRange" method="_on_end_down_pressed"]
-[connection signal="pressed" from="MarginContainer/CloseButton/Button" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="BackgroundButton" to="." method="_on_background_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Options/Range/Button" to="." method="_on_range_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Options/Signatures/Button" to="." method="_on_signatures_pressed"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/Options/AssistMode/MarginContainer/HBoxContainer/Toggle" to="." method="_on_assist_toggled"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer/Toggle" to="." method="_on_hard_assist_toggled"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer/HSlider" to="." method="_on_simultaneous_notes_changed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Options/RefreshMidi/Button" to="." method="_on_refresh_midi_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Options/Quit/Button" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/Start/Up" to="PanelContainer/MarginContainer/NoteRange" method="_on_start_up_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/Start/Down" to="PanelContainer/MarginContainer/NoteRange" method="_on_start_down_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/End/Up" to="PanelContainer/MarginContainer/NoteRange" method="_on_end_up_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/End/Down" to="PanelContainer/MarginContainer/NoteRange" method="_on_end_down_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/CloseButton/Button" to="." method="_on_close_pressed"]
 
-[editable path="MarginContainer/Options/Range"]
-[editable path="MarginContainer/Options/Signatures"]
-[editable path="MarginContainer/Options/AssistMode"]
-[editable path="MarginContainer/Options/HardAssistMode"]
-[editable path="MarginContainer/Options/SimultaneousNotesOptionEntry"]
-[editable path="MarginContainer/Options/RefreshMidi"]
-[editable path="MarginContainer/Options/Quit"]
+[editable path="PanelContainer/MarginContainer/Options/Range"]
+[editable path="PanelContainer/MarginContainer/Options/Signatures"]
+[editable path="PanelContainer/MarginContainer/Options/AssistMode"]
+[editable path="PanelContainer/MarginContainer/Options/HardAssistMode"]
+[editable path="PanelContainer/MarginContainer/Options/SimultaneousNotesOptionEntry"]
+[editable path="PanelContainer/MarginContainer/Options/RefreshMidi"]
+[editable path="PanelContainer/MarginContainer/Options/Quit"]

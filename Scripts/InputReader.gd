@@ -41,7 +41,7 @@ const OCTAVE_KEY_INDEX = ["WhiteKey1", "BlackKey1", "WhiteKey2", "BlackKey2", "W
 
 func _unhandled_input(event : InputEvent):
     if (event is InputEventMIDI):
-        var event_dump : String = ""
+        var event_dump := ""
         var played_note : Note
         var props : Dictionary = {}
 

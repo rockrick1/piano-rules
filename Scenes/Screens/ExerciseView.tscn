@@ -50,7 +50,7 @@ anchor_60 = NodePath("MarginContainer/TextureRect/Anchor60")
 top_line = NodePath("MarginContainer/TextureRect/Complements/TopLine")
 bot_line = NodePath("MarginContainer/TextureRect/Complements/BotLine")
 options_panel = NodePath("OptionsPanel")
-note_range = NodePath("OptionsPanel/MarginContainer/NoteRange")
+note_range = NodePath("OptionsPanel/PanelContainer/MarginContainer/NoteRange")
 
 [node name="Exercises" type="Node" parent="." unique_id=966647934]
 
@@ -519,9 +519,10 @@ layout_mode = 1
 [connection signal="pressed" from="MarginContainer/Buttons/Configs" to="." method="_on_Configs_pressed"]
 
 [editable path="OptionsPanel"]
-[editable path="OptionsPanel/MarginContainer/Options/Range"]
-[editable path="OptionsPanel/MarginContainer/Options/Signatures"]
-[editable path="OptionsPanel/MarginContainer/Options/AssistMode"]
-[editable path="OptionsPanel/MarginContainer/Options/HardAssistMode"]
-[editable path="OptionsPanel/MarginContainer/Options/RefreshMidi"]
-[editable path="OptionsPanel/MarginContainer/Options/Quit"]
+[editable path="OptionsPanel/PanelContainer/MarginContainer/Options/Range"]
+[editable path="OptionsPanel/PanelContainer/MarginContainer/Options/Signatures"]
+[editable path="OptionsPanel/PanelContainer/MarginContainer/Options/AssistMode"]
+[editable path="OptionsPanel/PanelContainer/MarginContainer/Options/HardAssistMode"]
+[editable path="OptionsPanel/PanelContainer/MarginContainer/Options/SimultaneousNotesOptionEntry"]
+[editable path="OptionsPanel/PanelContainer/MarginContainer/Options/RefreshMidi"]
+[editable path="OptionsPanel/PanelContainer/MarginContainer/Options/Quit"]
