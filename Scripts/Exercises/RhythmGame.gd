@@ -1,14 +1,11 @@
 class_name RhythmGame
 extends Exercise
 
-var OFFSET := 4
 var START_TIME := 300.0
-var SPEED := 150
-var NPS : float = 1.0
 var HIT_TIME_WINDOW : float = .3
 
 var last_pitch : int = -1
-var note_spawn_timer
+var note_spawn_timer := 0.0
 
 func _ready():
     next_step()
@@ -24,21 +21,22 @@ func _process_note_movement(delta: float):
         return
     
     for note in live_notes:
-        note.time -= SPEED * delta
+        note.time -= ExerciseContext.note_speed * delta
 
 func _process_note_spawn(delta: float):
     if ExerciseContext.wait_for_note_played && len(live_notes) > 0 && live_notes[0].time <= 0:
         return
     
     note_spawn_timer += delta
-    if (note_spawn_timer > 1 / NPS):
+    if (note_spawn_timer > ExerciseContext.note_spawn_interval):
         next_step()
+        note_spawn_timer = 0
 
 func _process_note_missing():
     if ExerciseContext.wait_for_note_played:
         return
 
-    while len(live_notes) > 0 && live_notes[0].time < -HIT_TIME_WINDOW * SPEED:
+    while len(live_notes) > 0 && live_notes[0].time < -HIT_TIME_WINDOW * ExerciseContext.note_speed:
         note_missed.emit(live_notes[0])
         live_notes.remove_at(0)
 
@@ -65,7 +63,6 @@ func _process_note_hitting():
             live_notes.erase(note)
 
 func next_step():
-    note_spawn_timer = 0
     _spawn_random_notes()
 
 func _spawn_random_notes():

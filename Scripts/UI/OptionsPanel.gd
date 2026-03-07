@@ -67,3 +67,9 @@ func _on_quit_pressed() -> void:
 
 func _on_wait_for_note_toggled(toggled_on: bool) -> void:
     ExerciseContext.wait_for_note_played = toggled_on
+
+func _on_note_speed_changed(value: float) -> void:
+    ExerciseContext.note_speed = value
+
+func _on_note_spawn_interval_changed(value: float) -> void:
+    ExerciseContext.note_spawn_interval = value

@@ -10,3 +10,4 @@ static var simultaneous_notes := 1
 #rhythm game specifics
 static var wait_for_note_played := false
 static var note_spawn_interval := 1.0
+static var note_speed := 150.0
