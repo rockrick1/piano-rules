@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://bksggk1e6s5j4" path="res://Assets/Fonts/Rubik-VariableFont_wght.ttf" id="3"]
 [ext_resource type="PackedScene" uid="uid://dibkxd24oe2f5" path="res://Scenes/UI/ButtonOptionPanelEntry.tscn" id="4_dt4g3"]
 [ext_resource type="PackedScene" uid="uid://buyj2d7pqlinj" path="res://Scenes/UI/ToggleOptionPanelEntry.tscn" id="5_as4mu"]
+[ext_resource type="Script" uid="uid://c3q2ii8ivb3qr" path="res://Scripts/UI/OptionExerciseTypeFilter.gd" id="5_qxh2l"]
 [ext_resource type="PackedScene" uid="uid://d02crn8j4unr4" path="res://Scenes/UI/NumberOptionPanelEntry.tscn" id="5_y0olo"]
 [ext_resource type="Script" uid="uid://e1vkwxw1f8b3" path="res://Scripts/UI/NoteRange.gd" id="6_knjjy"]
 [ext_resource type="Script" uid="uid://bpev5qt5358kn" path="res://Scripts/UI/Signatures.gd" id="7_as4mu"]
@@ -110,17 +111,31 @@ layout_mode = 2
 [node name="Label" parent="PanelContainer/MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(794156671, 108222582) index="0" unique_id=210892151]
 text = "Hard Assist Mode"
 
+[node name="WaitForNotePlayed" parent="PanelContainer/MarginContainer/Options" unique_id=2125999843 instance=ExtResource("5_as4mu")]
+layout_mode = 2
+script = ExtResource("5_qxh2l")
+allowed_exercises = Array[int]([1])
+
+[node name="Label" parent="PanelContainer/MarginContainer/Options/WaitForNotePlayed/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2125999843, 108222582) index="0" unique_id=210892151]
+text = "Wait For Note Played"
+
 [node name="SimultaneousNotesOptionEntry" parent="PanelContainer/MarginContainer/Options" unique_id=1185714019 instance=ExtResource("5_y0olo")]
 layout_mode = 2
 
 [node name="Label" parent="PanelContainer/MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1185714019, 108222582) index="0" unique_id=210892151]
 text = "Simultaneous Notes"
 
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/Options" unique_id=2121926066]
+layout_mode = 2
+
 [node name="RefreshMidi" parent="PanelContainer/MarginContainer/Options" unique_id=2034841440 instance=ExtResource("4_dt4g3")]
 layout_mode = 2
 
 [node name="Label" parent="PanelContainer/MarginContainer/Options/RefreshMidi/LabelContainer" parent_id_path=PackedInt32Array(2034841440, 2073621075) index="0" unique_id=208268336]
 text = "Refresh MIDI"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/Options" unique_id=1075742325]
+layout_mode = 2
 
 [node name="Quit" parent="PanelContainer/MarginContainer/Options" unique_id=665444340 instance=ExtResource("4_dt4g3")]
 layout_mode = 2
@@ -296,6 +311,7 @@ icon = ExtResource("8_as4mu")
 [connection signal="pressed" from="PanelContainer/MarginContainer/Options/Signatures/Button" to="." method="_on_signatures_pressed"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/Options/AssistMode/MarginContainer/HBoxContainer/Toggle" to="." method="_on_assist_toggled"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer/Toggle" to="." method="_on_hard_assist_toggled"]
+[connection signal="toggled" from="PanelContainer/MarginContainer/Options/WaitForNotePlayed/MarginContainer/HBoxContainer/Toggle" to="." method="_on_wait_for_note_toggled"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer/Input" to="." method="_on_simultaneous_notes_changed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Options/RefreshMidi/Button" to="." method="_on_refresh_midi_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Options/Quit/Button" to="." method="_on_quit_pressed"]
@@ -309,6 +325,7 @@ icon = ExtResource("8_as4mu")
 [editable path="PanelContainer/MarginContainer/Options/Signatures"]
 [editable path="PanelContainer/MarginContainer/Options/AssistMode"]
 [editable path="PanelContainer/MarginContainer/Options/HardAssistMode"]
+[editable path="PanelContainer/MarginContainer/Options/WaitForNotePlayed"]
 [editable path="PanelContainer/MarginContainer/Options/SimultaneousNotesOptionEntry"]
 [editable path="PanelContainer/MarginContainer/Options/RefreshMidi"]
 [editable path="PanelContainer/MarginContainer/Options/Quit"]

@@ -28,12 +28,6 @@ func _spawn_random_notes():
             live_notes.append(note)
             notes_to_spawn -= 1
 
-func _is_note_in_array(note: Note, notes: Array[Note]) -> bool:
-    for n in notes:
-        if n.pitch == note.pitch:
-            return true
-    return false
-
 func _check_for_miss_feedback() -> void:
     var input_pitches = get_just_pressed_keys()
     if len(input_pitches) == 0:

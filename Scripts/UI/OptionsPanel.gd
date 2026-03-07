@@ -64,3 +64,6 @@ func _on_quit_pressed() -> void:
     get_tree().change_scene_to_file("res://Scenes/Screens/MainMenu.tscn")
     # TODO this shouldnt be needed
     get_tree().root.get_node("ExerciseView").queue_free()
+
+func _on_wait_for_note_toggled(toggled_on: bool) -> void:
+    ExerciseContext.wait_for_note_played = toggled_on

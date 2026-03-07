@@ -14,8 +14,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_60bxw")
 controller_scene = ExtResource("2_f35bi")
-random_note_scene = ExtResource("3_441x2")
-rhythm_game_scene = ExtResource("4_qme8y")
+exercises = Dictionary[int, PackedScene]({
+0: ExtResource("3_441x2"),
+1: ExtResource("4_qme8y")
+})
 
 [node name="Background" type="ColorRect" parent="." unique_id=500950270]
 layout_mode = 1

@@ -1,6 +1,11 @@
 class_name Exercise
 extends Node
 
+enum Type {
+    RANDOM_NOTE,
+    RHYTHM_GAME
+}
+
 signal wrong_note_played(Note)
 signal note_hit(Note)
 signal note_missed(Note)
@@ -28,6 +33,12 @@ func create_note_in_scale() -> Note:
 func _process(_delta) -> void:
     input_reader.just_pressed.clear()
     input_reader.just_released.clear()
+
+func _is_note_in_array(note: Note, notes: Array[Note]) -> bool:
+    for n in notes:
+        if n.pitch == note.pitch:
+            return true
+    return false
 
 func get_pressed_keys():
     return input_reader.currently_pressed.keys()
