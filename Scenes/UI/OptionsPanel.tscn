@@ -1,19 +1,24 @@
 [gd_scene format=3 uid="uid://7yb6mv40kovg"]
 
-[ext_resource type="Script" uid="uid://bb35qd1o6v85w" path="res://Scripts/UI/OptionsPanel.gd" id="1"]
+[ext_resource type="Script" uid="uid://bb35qd1o6v85w" path="res://Scripts/UI/OptionsPanel/OptionsPanel.gd" id="1"]
 [ext_resource type="FontFile" path="res://Assets/Fonts/Simple.tres" id="2"]
 [ext_resource type="FontFile" uid="uid://bksggk1e6s5j4" path="res://Assets/Fonts/Rubik-VariableFont_wght.ttf" id="3"]
 [ext_resource type="PackedScene" uid="uid://dibkxd24oe2f5" path="res://Scenes/UI/ButtonOptionPanelEntry.tscn" id="4_dt4g3"]
 [ext_resource type="PackedScene" uid="uid://buyj2d7pqlinj" path="res://Scenes/UI/ToggleOptionPanelEntry.tscn" id="5_as4mu"]
-[ext_resource type="Script" uid="uid://c3q2ii8ivb3qr" path="res://Scripts/UI/OptionExerciseTypeFilter.gd" id="5_qxh2l"]
+[ext_resource type="Script" uid="uid://5j6nr0nhbvxb" path="res://Scripts/UI/OptionsPanel/Entries/AssistModeOptionEntry.gd" id="5_wls58"]
 [ext_resource type="PackedScene" uid="uid://d02crn8j4unr4" path="res://Scenes/UI/NumberOptionPanelEntry.tscn" id="5_y0olo"]
-[ext_resource type="Script" uid="uid://e1vkwxw1f8b3" path="res://Scripts/UI/NoteRange.gd" id="6_knjjy"]
-[ext_resource type="Script" uid="uid://bpev5qt5358kn" path="res://Scripts/UI/Signatures.gd" id="7_as4mu"]
+[ext_resource type="Script" uid="uid://dgwxcj2nbhney" path="res://Scripts/UI/OptionsPanel/Entries/HardAssistModeOptionEntry.gd" id="6_e115p"]
+[ext_resource type="Script" uid="uid://e1vkwxw1f8b3" path="res://Scripts/UI/OptionsPanel/NoteRange.gd" id="6_knjjy"]
+[ext_resource type="Script" uid="uid://bpev5qt5358kn" path="res://Scripts/UI/OptionsPanel/Signatures.gd" id="7_as4mu"]
+[ext_resource type="Script" uid="uid://c37ajvnb0fk3p" path="res://Scripts/UI/OptionsPanel/Entries/WaitForNotePlayedOptionEntry.gd" id="7_e115p"]
 [ext_resource type="Texture2D" uid="uid://b6tasgl843yv3" path="res://Assets/UI/UpArrowAtlasTexture.tres" id="7_knjjy"]
 [ext_resource type="PackedScene" uid="uid://l582tao0vbqw" path="res://Scenes/UI/NoteRangePresetEntry.tscn" id="7_y0olo"]
 [ext_resource type="Texture2D" uid="uid://c020py2fddt3f" path="res://Assets/UI/DownArrowAtlasTexture.tres" id="8_5gkv1"]
 [ext_resource type="Texture2D" uid="uid://ser4v1k4nxpe" path="res://Assets/UI/CloseButtonAtlasTexture.tres" id="8_as4mu"]
+[ext_resource type="Script" uid="uid://dpae634hkqwtp" path="res://Scripts/UI/OptionsPanel/Entries/NoteSpeedOptionEntry.gd" id="9_4qny7"]
+[ext_resource type="Script" uid="uid://d2715uxk0tcf2" path="res://Scripts/UI/OptionsPanel/Entries/NoteSpawnIntervalOptionEntry.gd" id="10_4qny7"]
 [ext_resource type="PackedScene" uid="uid://byifvjqth6q65" path="res://Scenes/UI/SignatureButton.tscn" id="10_13ixf"]
+[ext_resource type="Script" uid="uid://batawekgoc4or" path="res://Scripts/UI/OptionsPanel/Entries/SimultaneousNotesOptionEntry.gd" id="11_kg3qe"]
 
 [sub_resource type="FontFile" id="2"]
 fallbacks = Array[Font]([ExtResource("3"), ExtResource("3")])
@@ -46,7 +51,7 @@ default_font = SubResource("2")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_myspe"]
 bg_color = Color(0, 0, 0, 0.84313726)
 
-[node name="OptionsPanel" type="Control" unique_id=1830347936 node_paths=PackedStringArray("note_range", "signatures", "options_container", "assist_toggle", "hard_assist_toggle")]
+[node name="OptionsPanel" type="Control" unique_id=1830347936 node_paths=PackedStringArray("note_range", "signatures", "options_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,8 +63,6 @@ script = ExtResource("1")
 note_range = NodePath("PanelContainer/MarginContainer/NoteRange")
 signatures = NodePath("PanelContainer/MarginContainer/Signatures")
 options_container = NodePath("PanelContainer/MarginContainer/Options")
-assist_toggle = NodePath("PanelContainer/MarginContainer/Options/AssistMode/MarginContainer/HBoxContainer/Toggle")
-hard_assist_toggle = NodePath("PanelContainer/MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer/Toggle")
 
 [node name="BackgroundButton" type="Button" parent="." unique_id=2101663785]
 layout_mode = 1
@@ -99,30 +102,38 @@ layout_mode = 2
 [node name="Label" parent="PanelContainer/MarginContainer/Options/Signatures/LabelContainer" parent_id_path=PackedInt32Array(922621493, 2073621075) index="0" unique_id=208268336]
 text = "Signatures"
 
-[node name="AssistMode" parent="PanelContainer/MarginContainer/Options" unique_id=1369178936 instance=ExtResource("5_as4mu")]
+[node name="AssistMode" parent="PanelContainer/MarginContainer/Options" unique_id=1369178936 node_paths=PackedStringArray("toggle", "hard_assist_toggle") instance=ExtResource("5_as4mu")]
 layout_mode = 2
+script = ExtResource("5_wls58")
+toggle = NodePath("MarginContainer/HBoxContainer/Toggle")
+hard_assist_toggle = NodePath("../HardAssistMode/MarginContainer/HBoxContainer/Toggle")
 
 [node name="Label" parent="PanelContainer/MarginContainer/Options/AssistMode/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1369178936, 108222582) index="0" unique_id=210892151]
 text = "Assist Mode"
 
-[node name="HardAssistMode" parent="PanelContainer/MarginContainer/Options" unique_id=794156671 instance=ExtResource("5_as4mu")]
+[node name="HardAssistMode" parent="PanelContainer/MarginContainer/Options" unique_id=794156671 node_paths=PackedStringArray("toggle", "assist_toggle") instance=ExtResource("5_as4mu")]
 layout_mode = 2
+script = ExtResource("6_e115p")
+toggle = NodePath("MarginContainer/HBoxContainer/Toggle")
+assist_toggle = NodePath("../AssistMode/MarginContainer/HBoxContainer/Toggle")
 
 [node name="Label" parent="PanelContainer/MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(794156671, 108222582) index="0" unique_id=210892151]
 text = "Hard Assist Mode"
 
-[node name="WaitForNotePlayed" parent="PanelContainer/MarginContainer/Options" unique_id=2125999843 instance=ExtResource("5_as4mu")]
+[node name="WaitForNotePlayed" parent="PanelContainer/MarginContainer/Options" unique_id=2125999843 node_paths=PackedStringArray("toggle") instance=ExtResource("5_as4mu")]
 layout_mode = 2
-script = ExtResource("5_qxh2l")
-allowed_exercises = Array[int]([1])
+script = ExtResource("7_e115p")
+toggle = NodePath("MarginContainer/HBoxContainer/Toggle")
+blocked_exercises = Array[int]([0])
 
 [node name="Label" parent="PanelContainer/MarginContainer/Options/WaitForNotePlayed/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(2125999843, 108222582) index="0" unique_id=210892151]
 text = "Wait For Note Played"
 
-[node name="NoteSpeed" parent="PanelContainer/MarginContainer/Options" unique_id=1693453928 instance=ExtResource("5_y0olo")]
+[node name="NoteSpeed" parent="PanelContainer/MarginContainer/Options" unique_id=1693453928 node_paths=PackedStringArray("input") instance=ExtResource("5_y0olo")]
 layout_mode = 2
-script = ExtResource("5_qxh2l")
-allowed_exercises = Array[int]([1])
+script = ExtResource("9_4qny7")
+input = NodePath("MarginContainer/HBoxContainer/Input")
+blocked_exercises = Array[int]([0])
 
 [node name="Label" parent="PanelContainer/MarginContainer/Options/NoteSpeed/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1693453928, 108222582) index="0" unique_id=210892151]
 text = "NoteSpeed"
@@ -131,10 +142,11 @@ text = "NoteSpeed"
 max_value = 9999.0
 value = 150.0
 
-[node name="NoteSpawnInterval" parent="PanelContainer/MarginContainer/Options" unique_id=1428602042 instance=ExtResource("5_y0olo")]
+[node name="NoteSpawnInterval" parent="PanelContainer/MarginContainer/Options" unique_id=1428602042 node_paths=PackedStringArray("input") instance=ExtResource("5_y0olo")]
 layout_mode = 2
-script = ExtResource("5_qxh2l")
-allowed_exercises = Array[int]([1])
+script = ExtResource("10_4qny7")
+input = NodePath("MarginContainer/HBoxContainer/Input")
+blocked_exercises = Array[int]([0])
 
 [node name="Label" parent="PanelContainer/MarginContainer/Options/NoteSpawnInterval/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1428602042, 108222582) index="0" unique_id=210892151]
 text = "NoteSpawnInterval"
@@ -143,9 +155,12 @@ text = "NoteSpawnInterval"
 min_value = 0.1
 max_value = 9999.0
 step = 0.1
+value = 1.1
 
-[node name="SimultaneousNotesOptionEntry" parent="PanelContainer/MarginContainer/Options" unique_id=1185714019 instance=ExtResource("5_y0olo")]
+[node name="SimultaneousNotesOptionEntry" parent="PanelContainer/MarginContainer/Options" unique_id=1185714019 node_paths=PackedStringArray("input") instance=ExtResource("5_y0olo")]
 layout_mode = 2
+script = ExtResource("11_kg3qe")
+input = NodePath("MarginContainer/HBoxContainer/Input")
 
 [node name="Label" parent="PanelContainer/MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1185714019, 108222582) index="0" unique_id=210892151]
 text = "Simultaneous Notes"
@@ -334,12 +349,6 @@ icon = ExtResource("8_as4mu")
 [connection signal="pressed" from="BackgroundButton" to="." method="_on_background_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Options/Range/Button" to="." method="_on_range_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Options/Signatures/Button" to="." method="_on_signatures_pressed"]
-[connection signal="toggled" from="PanelContainer/MarginContainer/Options/AssistMode/MarginContainer/HBoxContainer/Toggle" to="." method="_on_assist_toggled"]
-[connection signal="toggled" from="PanelContainer/MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer/Toggle" to="." method="_on_hard_assist_toggled"]
-[connection signal="toggled" from="PanelContainer/MarginContainer/Options/WaitForNotePlayed/MarginContainer/HBoxContainer/Toggle" to="." method="_on_wait_for_note_toggled"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/Options/NoteSpeed/MarginContainer/HBoxContainer/Input" to="." method="_on_note_speed_changed"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/Options/NoteSpawnInterval/MarginContainer/HBoxContainer/Input" to="." method="_on_note_spawn_interval_changed"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer/Input" to="." method="_on_simultaneous_notes_changed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Options/RefreshMidi/Button" to="." method="_on_refresh_midi_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Options/Quit/Button" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/Start/Up" to="PanelContainer/MarginContainer/NoteRange" method="_on_start_up_pressed"]

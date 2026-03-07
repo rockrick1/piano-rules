@@ -15,6 +15,10 @@ run/main_scene="uid://cs3000gnfpmkg"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.png"
 
+[autoload]
+
+ExerciseContext="*uid://binpn7yo5ryms"
+
 [display]
 
 window/stretch/mode="2d"

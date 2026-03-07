@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://brgaw2yj751gv"]
 
-[ext_resource type="Script" uid="uid://5j6nr0nhbvxb" path="res://Scripts/UI/SliderOptionEntry.gd" id="1_cj603"]
+[ext_resource type="Script" uid="uid://5j6nr0nhbvxb" path="res://Scripts/UI/OptionsPanel/Entries/AssistModeOptionEntry.gd" id="1_cj603"]
 
 [sub_resource type="Theme" id="Theme_x1evh"]
 

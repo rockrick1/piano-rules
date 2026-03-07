@@ -26,10 +26,6 @@ func _ready():
     # generate a new random seed
     randomize()
     
-    options_panel.exercise_controller = self
-    
-    assist.visible = false
-    hard_assist.visible = false
     top_line.hide()
     bot_line.hide()
     
@@ -38,7 +34,8 @@ func _ready():
     
     note_range.enabled.connect(_on_note_range_enabled)
     note_range.disabled.connect(_on_note_range_disabled)
-    note_range.range_changed.connect(_on_note_range_changed)
+    ExerciseContext.values_changed.connect(_on_context_values_changed)
+    _on_context_values_changed()
 
 func _process(_delta: float) -> void:
     _update_notes()
@@ -102,11 +99,16 @@ func _on_note_range_disabled():
     top_line.hide()
     bot_line.hide()
 
-func _on_note_range_changed():
+func _on_context_values_changed():
+    # note range
     var top_pos := Vector2(1024/2, get_note_position(Note.new(ExerciseContext.pitch_range[1])).y)
     top_line.set_position(top_pos)
     var bot_pos := Vector2(1024/2, get_note_position(Note.new(ExerciseContext.pitch_range[0])).y)
     bot_line.set_position(bot_pos)
+    
+    # assists
+    assist.visible = ExerciseContext.assist
+    hard_assist.visible = ExerciseContext.hard_assist
 
 func _on_note_missed(note: Note):
     var note_placeholder : NoteView = note_scene.instantiate()
