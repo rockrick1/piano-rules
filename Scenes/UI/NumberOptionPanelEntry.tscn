@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://d02crn8j4unr4"]
+
+[ext_resource type="Script" uid="uid://5j6nr0nhbvxb" path="res://Scripts/UI/SliderOptionEntry.gd" id="1_ttb8p"]
+
+[sub_resource type="Theme" id="Theme_x1evh"]
+
+[node name="SliderOptionEntry" type="PanelContainer" unique_id=1369178936]
+script = ExtResource("1_ttb8p")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1557957416]
+layout_mode = 2
+theme = SubResource("Theme_x1evh")
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=108222582]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=210892151]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "asdasdasd"
+
+[node name="Input" type="SpinBox" parent="MarginContainer/HBoxContainer" unique_id=1689889587]
+custom_minimum_size = Vector2(85.79, 0)
+layout_mode = 2
+tooltip_text = "
+"
+min_value = 1.0
+max_value = 5.0
+value = 1.0

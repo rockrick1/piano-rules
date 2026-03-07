@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://bksggk1e6s5j4" path="res://Assets/Fonts/Rubik-VariableFont_wght.ttf" id="3"]
 [ext_resource type="PackedScene" uid="uid://dibkxd24oe2f5" path="res://Scenes/UI/ButtonOptionPanelEntry.tscn" id="4_dt4g3"]
 [ext_resource type="PackedScene" uid="uid://buyj2d7pqlinj" path="res://Scenes/UI/ToggleOptionPanelEntry.tscn" id="5_as4mu"]
-[ext_resource type="PackedScene" uid="uid://brgaw2yj751gv" path="res://Scenes/UI/SliderOptionPanelEntry.tscn" id="5_myspe"]
+[ext_resource type="PackedScene" uid="uid://d02crn8j4unr4" path="res://Scenes/UI/NumberOptionPanelEntry.tscn" id="5_y0olo"]
 [ext_resource type="Script" uid="uid://e1vkwxw1f8b3" path="res://Scripts/UI/NoteRange.gd" id="6_knjjy"]
 [ext_resource type="Script" uid="uid://bpev5qt5358kn" path="res://Scripts/UI/Signatures.gd" id="7_as4mu"]
 [ext_resource type="Texture2D" uid="uid://b6tasgl843yv3" path="res://Assets/UI/UpArrowAtlasTexture.tres" id="7_knjjy"]
@@ -73,7 +73,7 @@ flat = true
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 291.0
+offset_right = 261.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_myspe")
 
@@ -110,10 +110,10 @@ layout_mode = 2
 [node name="Label" parent="PanelContainer/MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(794156671, 108222582) index="0" unique_id=210892151]
 text = "Hard Assist Mode"
 
-[node name="SimultaneousNotesOptionEntry" parent="PanelContainer/MarginContainer/Options" unique_id=810741091 instance=ExtResource("5_myspe")]
+[node name="SimultaneousNotesOptionEntry" parent="PanelContainer/MarginContainer/Options" unique_id=1185714019 instance=ExtResource("5_y0olo")]
 layout_mode = 2
 
-[node name="Label" parent="PanelContainer/MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(810741091, 108222582) index="0" unique_id=210892151]
+[node name="Label" parent="PanelContainer/MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer" parent_id_path=PackedInt32Array(1185714019, 108222582) index="0" unique_id=210892151]
 text = "Simultaneous Notes"
 
 [node name="RefreshMidi" parent="PanelContainer/MarginContainer/Options" unique_id=2034841440 instance=ExtResource("4_dt4g3")]
@@ -296,7 +296,7 @@ icon = ExtResource("8_as4mu")
 [connection signal="pressed" from="PanelContainer/MarginContainer/Options/Signatures/Button" to="." method="_on_signatures_pressed"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/Options/AssistMode/MarginContainer/HBoxContainer/Toggle" to="." method="_on_assist_toggled"]
 [connection signal="toggled" from="PanelContainer/MarginContainer/Options/HardAssistMode/MarginContainer/HBoxContainer/Toggle" to="." method="_on_hard_assist_toggled"]
-[connection signal="value_changed" from="PanelContainer/MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer/HSlider" to="." method="_on_simultaneous_notes_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/Options/SimultaneousNotesOptionEntry/MarginContainer/HBoxContainer/Input" to="." method="_on_simultaneous_notes_changed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Options/RefreshMidi/Button" to="." method="_on_refresh_midi_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Options/Quit/Button" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/NoteRange/VBoxContainer/Buttons/Start/Up" to="PanelContainer/MarginContainer/NoteRange" method="_on_start_up_pressed"]

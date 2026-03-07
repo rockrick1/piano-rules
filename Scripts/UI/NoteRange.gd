@@ -28,7 +28,6 @@ func _update_visuals():
     start_label.set_text(str(start))
     end_label.set_text(str(end))
     range_changed.emit()
-    print(ExerciseContext.pitch_range)
 
 func _on_start_up_pressed():
     if ExerciseContext.pitch_range[0] + 1 >= ExerciseContext.pitch_range[1]:
